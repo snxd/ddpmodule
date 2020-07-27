@@ -20,8 +20,7 @@
                     <th scope="col" class="col date"><?= $block->escapeHtml(__('Date')) ?></th>
                     <th scope="col" class="col title"><?= $block->escapeHtml(__('Title')) ?></th>
                     <th scope="col" class="col status"><?= $block->escapeHtml(__('Status')) ?></th>
-                    <th scope="col" class="col remaining"><?= $block->escapeHtml(__('Remaining Downloads')) ?></th>
-                    <th scope="col" class="col remaining">JLINES</th>
+                    <th scope="col" class="col remaining"><?= $block->escapeHtml(__('Remaining Downloadsss')) ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -42,7 +41,6 @@
                     </td>
                     <td data-th="<?= $block->escapeHtmlAttr(__('Status')) ?>" class="col status"><?= $block->escapeHtml(__(ucfirst($_item->getStatus()))) ?></td>
                     <td data-th="<?= $block->escapeHtmlAttr(__('Remaining Downloads')) ?>" class="col remaining"><?= $block->escapeHtml($block->getRemainingDownloads($_item)) ?></td>
-                    <td data-th="<?= $block->escapeHtmlAttr(__('JLINES')) ?>" class="col remaining">JLINES!!!</td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
