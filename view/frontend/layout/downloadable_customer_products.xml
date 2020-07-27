@@ -13,7 +13,7 @@
         </referenceContainer>
         <referenceBlock name="root">
             <action method="setHeaderTitle">
-                <argument translate="true" name="title" xsi:type="string">My Downloadable Products</argument>
+                <argument translate="true" name="title" xsi:type="string">My Downloadable Productses</argument>
             </action>
         </referenceBlock>
     </body>
