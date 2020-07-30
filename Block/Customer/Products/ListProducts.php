@@ -164,8 +164,8 @@ class ListProducts extends \Magento\Framework\View\Element\Template
 
         $authUrl = "";//$edgeAuth->generateToken();
 
-        $wf = base64_encode("{" + $url + $authUrl + "}");
-        return "https://stamp.directdlm.com/stamp/bcb9ed17-ebc7-4344-94e1-1b88e321b0a2/" + $wf + "/downloader.exe";
+        $wf = base64_encode("{" . $url . $authUrl . "}");
+        return "https://stamp.directdlm.com/stamp/bcb9ed17-ebc7-4344-94e1-1b88e321b0a2/" . $wf . "/downloader.exe";
     }
 
     /**
