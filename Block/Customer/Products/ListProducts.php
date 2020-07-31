@@ -7,7 +7,7 @@
 namespace SolidStateNetworks\ddpmodule\Block\Customer\Products;
 
 use Magento\Downloadable\Model\Link\Purchased\Item;
-//use Matricali\Security\EdgeAuth\TokenAuth;
+use Matricali\Security\EdgeAuth\TokenAuth;
 
 
 
