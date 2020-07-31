@@ -6,8 +6,8 @@
 
 namespace SolidStateNetworks\ddpmodule\Block\Customer\Products;
 
-require_once("../../../Helper/Akamai/TokenAuth.php"); 
-require_once("../../../Helper/Akamai/InvalidArgumentException.php"); 
+//require_once("../../../Helper/Akamai/TokenAuth.php"); 
+//require_once("../../../Helper/Akamai/InvalidArgumentException.php"); 
 
 use Magento\Downloadable\Model\Link\Purchased\Item;
 use Matricali\Security\EdgeAuth\TokenAuth;
@@ -163,7 +163,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         //return "farts";
         $url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => true]);
 
-        error_log("even sooner token auth");
+        error_log("even sooner token auth" . getcwd());
         error_log("before token auth");
         $edgeAuth = new TokenAuth('aabbccddeeffgg00112233445566', TokenAuth::ALGORITHM_SHA256);
         error_log("after token auth");
