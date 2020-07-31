@@ -4,12 +4,10 @@
  * See COPYING.txt for license details.
  */
 
-require_once("Helper/Akamai/TokenAuth.php"); 
-require_once("Helper/Akamai/InvalidArgumentException.php"); 
-
 namespace SolidStateNetworks\ddpmodule\Block\Customer\Products;
 
-
+require_once("Helper/Akamai/TokenAuth.php"); 
+require_once("Helper/Akamai/InvalidArgumentException.php"); 
 
 use Magento\Downloadable\Model\Link\Purchased\Item;
 use Matricali\Security\EdgeAuth\TokenAuth;
