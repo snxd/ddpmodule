@@ -6,7 +6,7 @@
 
 namespace SolidStateNetworks\ddpmodule\Block\Customer\Products;
 
-require_once("app/code/SolidStateNetworks/ddpmodule/Helper/Akamai/TokenAuth.php"); 
+//require_once("app/code/SolidStateNetworks/ddpmodule/Helper/Akamai/TokenAuth.php"); 
 //require_once("../../../Helper/Akamai/InvalidArgumentException.php"); 
 
 use Magento\Downloadable\Model\Link\Purchased\Item;
