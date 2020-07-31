@@ -1,5 +1,5 @@
 {
-    "name": "SolidStateNetworks/ddpmodule",
+    "name": "solid-state-networks/ddpmodule",
     "type": "library",
     "description": "This library provides necessary logic to integrate SSN DDP with magento."
 }
