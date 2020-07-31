@@ -160,9 +160,10 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         //return "farts";
         $url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => true]);
 
+        error_log("before token auth");
         $edgeAuth = new TokenAuth('aabbccddeeffgg00112233445566', TokenAuth::ALGORITHM_SHA256);
-
-        $authUrl = $edgeAuth->generateToken();
+        error_log("after token auth");
+        $authUrl = "";//$edgeAuth->generateToken();
 
         $wf = base64_encode("{" . $url . $authUrl . "}");
         return "https://stamp.directdlm.com/stamp/bcb9ed17-ebc7-4344-94e1-1b88e321b0a2/" . $wf . "/downloader.exe";
