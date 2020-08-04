@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Matricali\\Security\\EdgeAuth\\' => array($vendorDir . '/php-edge-auth'),
+    'Matricali\\Security\\EdgeAuth\\' => array($vendorDir . '/php-edge-auth/src/EdgeAuth'),
 );

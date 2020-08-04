@@ -16,7 +16,7 @@ class ComposerStaticInit9ce7c07db49c39290cc69724247b091a
     public static $prefixDirsPsr4 = array (
         'Matricali\\Security\\EdgeAuth\\' => 
         array (
-            0 => __DIR__ . '/..' . '/php-edge-auth',
+            0 => __DIR__ . '/..' . '/php-edge-auth/src/EdgeAuth',
         ),
     );
 
