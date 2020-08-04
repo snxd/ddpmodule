@@ -1,5 +1,8 @@
 {
     "name": "solid-state-networks/ddpmodule",
     "type": "library",
-    "description": "This library provides necessary logic to integrate SSN DDP with magento."
+    "description": "This library provides necessary logic to integrate SSN DDP with magento.",
+    "autoload": {
+        "psr-4": {"Matricali\\Security\\EdgeAuth\\": "vendor/php-edge-auth"}
+    }
 }
