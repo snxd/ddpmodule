@@ -164,7 +164,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => true]);
 
 
-        $dlmid = $this->getProduct()->getAttributeText('DLMID');
+        $dlmid = "no";//$this->getProduct()->getAttributeText('DLMID');
         $prod = $this->getPurchased()->getItemById($item->getPurchasedId());
 
         //error_log("even sooner token auth" . getcwd());
