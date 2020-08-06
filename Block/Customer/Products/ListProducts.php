@@ -165,7 +165,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
 
 
         $dlmid = $this->getProduct()->getAttributeText('DLMID');
-        $prod = $this->getPurchased()->getItemById($item->getPurchasedId())
+        $prod = $this->getPurchased()->getItemById($item->getPurchasedId());
 
         //error_log("even sooner token auth" . getcwd());
         error_log("before token auth" . $dlmid . " " . $prod);
