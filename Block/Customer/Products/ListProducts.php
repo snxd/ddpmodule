@@ -166,15 +166,17 @@ class ListProducts extends \Magento\Framework\View\Element\Template
 
         $dlmid = "no";//$this->getProduct()->getAttributeText('DLMID');
         //$prod = $this->getPurchased()->getItemById($item->getPurchasedId());
-        $pn = $item->getProductId();
+        $productId = $item->getProductId();
+        $product = Mage::getModel('catalog/product')->load($productId);
 
         //error_log("even sooner token auth" . getcwd());
         //error_log("before token auth" . $dlmid . " " . $prod);
         //error_log(TokenAuth);
         $edgeAuth = new TokenAuth('aabbccddeeff00112233445566', TokenAuth::ALGORITHM_SHA256);
-        error_log("after token auth " . $pn . " ");
+        error_log("after token auth " . $product->getName() . " ");
         $authUrl = $edgeAuth->generateToken();
         error_log($authUrl);
+
 
         $wf = base64_encode("{" . $url . $authUrl . "}");
         return "https://stamp.directdlm.com/stamp/bcb9ed17-ebc7-4344-94e1-1b88e321b0a2/" . $wf . "/downloader.exe";
