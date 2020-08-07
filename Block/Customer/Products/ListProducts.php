@@ -181,13 +181,13 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         }*/
         $cl = $product->getCustomAttributes();
         error_log("Start 3");
-        error_log($cl);
+        error_log(get_class($cl));
 
         //error_log("even sooner token auth" . getcwd());
         //error_log("before token auth" . $dlmid . " " . $prod);
         //error_log(TokenAuth);
         $edgeAuth = new TokenAuth('aabbccddeeff00112233445566', TokenAuth::ALGORITHM_SHA256);
-        error_log("after token auth " . $cl . " ");
+        error_log("after token auth ");
         $authUrl = $edgeAuth->generateToken();
         error_log($authUrl);
 
