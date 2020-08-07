@@ -11,6 +11,7 @@ namespace SolidStateNetworks\ddpmodule\Block\Customer\Products;
 
 use Magento\Downloadable\Model\Link\Purchased\Item;
 use Matricali\Security\EdgeAuth\TokenAuth;
+use Magento\Catalog\Model\ProductRepository;
 
 
 
@@ -47,6 +48,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer,
+        \Magento\Catalog\Model\ProductRepository $productRepository,
         \Magento\Downloadable\Model\ResourceModel\Link\Purchased\CollectionFactory $linksFactory,
         \Magento\Downloadable\Model\ResourceModel\Link\Purchased\Item\CollectionFactory $itemsFactory,
         array $data = []
@@ -54,6 +56,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $this->currentCustomer = $currentCustomer;
         $this->_linksFactory = $linksFactory;
         $this->_itemsFactory = $itemsFactory;
+        $this->_productRepository = $productRepository;
         parent::__construct($context, $data);
     }
 
