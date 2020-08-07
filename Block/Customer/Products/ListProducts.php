@@ -181,7 +181,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         }*/
         $cl = $product->getCustomAttributes();
         error_log("Start 3");
-        error_log(get_class($cl));
+        error_log(gettype($cl));
 
         //error_log("even sooner token auth" . getcwd());
         //error_log("before token auth" . $dlmid . " " . $prod);
