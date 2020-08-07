@@ -179,11 +179,11 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         foreach ($ar as &$value) {
             error_log($value);
         }*/
-        $cl = $product->getCustomAttributes();
-        foreach ($cl as &$value) {
+        $cl = $product->getCustomAttribute("dlmid");
+        /*foreach ($cl as &$value) {
             error_log($value->getAttributeCode());
             error_log($value->getValue());
-        }
+        }*/
         error_log("Start 3");
         error_log(gettype($cl));
 
