@@ -166,38 +166,21 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         //return "farts";
         $url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => true]);
 
+        $product = $this->_productRepository->getById($item->getProductId());
 
-        $dlmid = "no";//$this->getProduct()->getAttributeText('DLMID');
-        //$prod = $this->getPurchased()->getItemById($item->getPurchasedId());
-        $productId = $item->getProductId();
+        $dlmid = $product->getCustomAttribute("dlmid")->getValue();
+        $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
 
-        error_log("Start 1");
-        $product = $this->_productRepository->getById($productId);
-        error_log("Start 2");
+        error_log($dlmid . " " . $cdnpass);
 
-        /*$ar = get_class_methods(get_class($product));
-        foreach ($ar as &$value) {
-            error_log($value);
-        }*/
-        $cl = $product->getCustomAttribute("dlmid");
-        /*foreach ($cl as &$value) {
-            error_log($value->getAttributeCode());
-            error_log($value->getValue());
-        }*/
-        error_log("Start 3");
-        error_log(gettype($cl));
-
-        //error_log("even sooner token auth" . getcwd());
-        //error_log("before token auth" . $dlmid . " " . $prod);
-        //error_log(TokenAuth);
-        $edgeAuth = new TokenAuth('aabbccddeeff00112233445566', TokenAuth::ALGORITHM_SHA256);
-        error_log("after token auth ");
+        $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
+        
         $authUrl = $edgeAuth->generateToken();
-        error_log($authUrl);
+
 
 
         $wf = base64_encode("{" . $url . $authUrl . "}");
-        return "https://stamp.directdlm.com/stamp/bcb9ed17-ebc7-4344-94e1-1b88e321b0a2/" . $wf . "/downloader.exe";
+        return "https://stamp.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.exe";
     }
 
     /**
