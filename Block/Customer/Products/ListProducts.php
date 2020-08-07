@@ -174,8 +174,13 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         error_log("Start 1");
         $product = $this->_productRepository->getById($productId);
         error_log("Start 2");
+
+        $ar = get_class_methods(get_class($product));
+        foreach ($arr as &$value) {
+            error_log($value)
+        }
         $cl = $product->getCustomAttribute('DLMID');
-        error_log("Start 3" . get_class($cl) . " " . $cl->getValue());
+        error_log("Start 3" . get_class($cl) . " ";
 
         //error_log("even sooner token auth" . getcwd());
         //error_log("before token auth" . $dlmid . " " . $prod);
