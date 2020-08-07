@@ -180,6 +180,9 @@ class ListProducts extends \Magento\Framework\View\Element\Template
             error_log($value);
         }*/
         $cl = $product->getCustomAttributes();
+        foreach ($cl as &$value) {
+            error_log(gettype($value));
+        }
         error_log("Start 3");
         error_log(gettype($cl));
 
