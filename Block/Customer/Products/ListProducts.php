@@ -178,7 +178,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
 
 
 
-        $wf = base64_encode($workflow);
+        $wf = urlencode(base64_encode($workflow));
         return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
     }
 
