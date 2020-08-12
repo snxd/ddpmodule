@@ -163,24 +163,23 @@ class ListProducts extends \Magento\Framework\View\Element\Template
     public function getDownloadUrl($item)
     {
 
-        //return "farts";
+
+
         $url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => true]);
 
         $product = $this->_productRepository->getById($item->getProductId());
 
         $dlmid = $product->getCustomAttribute("dlmid")->getValue();
         $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
-
-        error_log($dlmid . " " . $cdnpass);
-
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
-        
         $authUrl = $edgeAuth->generateToken();
 
+        $workflow = '{"analytics":{"transactionId":"Always Sunny","downloadName":"Charlie","dessert":"Ice Cream"},"items":{"name":"'. "fake name" .'","url":"' . $url . '?__token__=' . $authUrl . '"}}';
 
 
-        $wf = base64_encode("{" . $url . $authUrl . "}");
-        return "https://stamp.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.exe";
+
+        $wf = base64_encode($workflow);
+        return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
     }
 
     /**
