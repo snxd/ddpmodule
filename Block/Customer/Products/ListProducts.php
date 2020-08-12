@@ -167,7 +167,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
 
         $url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => false]);
 
-        echo "URL " . $url . "\r\n";
+        error_log("URL " . $url . "\r\n");
 
         $product = $this->_productRepository->getById($item->getProductId());
 
