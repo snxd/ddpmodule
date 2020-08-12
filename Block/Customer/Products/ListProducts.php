@@ -165,9 +165,11 @@ class ListProducts extends \Magento\Framework\View\Element\Template
 
 
 
-        $url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => false]);
+        //$url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => false]);
 
-        error_log("URL " . $url . "\r\n");
+        //error_log("URL " . $url . "\r\n");
+
+        $url = "http://tokenauth.snxd.com/token/100MB.dat";
 
         $product = $this->_productRepository->getById($item->getProductId());
 
