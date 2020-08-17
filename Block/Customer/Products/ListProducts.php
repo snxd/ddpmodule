@@ -183,19 +183,19 @@ class ListProducts extends \Magento\Framework\View\Element\Template
 
         $dlmitems = "";
 
-        error_log("tet1");
+        error_log("tet1 " . $authUrl);
 
         foreach($links as &$value) {
             $dlmitems = $dlmitems . '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '?__token__=' . $authUrl . '"},';
         }
 
-        error_log("tet2");
+        error_log($dlmitems);
 
         $transid = $item->getPurchased()->getOrderId();
 
         error_log("tet3");
 
-        $workflow = '{"analytics":{"' . $transid . '":"Always Sunny","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
+        $workflow = '{"analytics":{"transactionId":"' . $transid . '","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
 
         error_log("tet5");
 
