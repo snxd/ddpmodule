@@ -176,6 +176,8 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $product = $this->_productRepository->getById($item->getProductId());
         $links = $this->_linkRepository->getList($product->getSku());
 
+        $dlmid = $product->getCustomAttribute("dlmid")->getValue();
+        $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
         $authUrl = $edgeAuth->generateToken();
 
@@ -192,11 +194,6 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $transid = $item->getPurchased()->getOrderId();
 
         error_log("tet3");
-
-        $dlmid = $product->getCustomAttribute("dlmid")->getValue();
-        $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
-
-        error_log("tet4");
 
         $workflow = '{"analytics":{"' . $transid . '":"Always Sunny","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
 
