@@ -181,16 +181,26 @@ class ListProducts extends \Magento\Framework\View\Element\Template
 
         $dlmitems = "";
 
+        error_log("tet1");
+
         foreach($links as &$value) {
             $dlmitems = $dlmitems . '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '?__token__=' . $authUrl . '"},';
         }
 
+        error_log("tet2");
+
         $transid = $item->getPurchased()->getOrderId();
+
+        error_log("tet3");
 
         $dlmid = $product->getCustomAttribute("dlmid")->getValue();
         $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
 
+        error_log("tet4");
+
         $workflow = '{"analytics":{"' . $transid . '":"Always Sunny","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
+
+        error_log("tet5");
 
         $wf = urlencode(base64_encode($workflow));
         return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
