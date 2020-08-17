@@ -165,7 +165,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
     public function getDownloadUrl($item)
     {
 
-
+        error_log("tet1111");  
 
         //$url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => false]);
 
