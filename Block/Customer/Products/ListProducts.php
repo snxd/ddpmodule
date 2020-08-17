@@ -176,23 +176,21 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $product = $this->_productRepository->getById($item->getProductId());
         $links = $this->_linkRepository->getList($product->getSku());
 
-        $func = function($value) {
-            return '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '"}';
-        };
-
-        $urls = array_map($func, $links);
-        $items = "";
-
-        foreach($urls as &$item) {
-            $items = $items . $item . ",";
-        }
-
-        $dlmid = $product->getCustomAttribute("dlmid")->getValue();
-        $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
         $authUrl = $edgeAuth->generateToken();
 
-        $workflow = '{"analytics":{"transactionId":"Always Sunny","downloadName":"Magento"},"items":[' . substr($items, 0, -1) . ']}';
+        $dlmitems = "";
+
+        foreach($links as &$value) {
+            $dlmitems = $dlmitems . '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '?__token__=' . $authUrl . '"},';
+        }
+
+        $transid = $item->getPurchased()->getOrderId();
+
+        $dlmid = $product->getCustomAttribute("dlmid")->getValue();
+        $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
+
+        $workflow = '{"analytics":{"' . $transid . '":"Always Sunny","downloadName":"Magento"},"items":[' . substr($items, 0, -1) . ']}';
 
         $wf = urlencode(base64_encode($workflow));
         return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
