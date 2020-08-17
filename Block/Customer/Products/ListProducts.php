@@ -12,7 +12,7 @@ namespace SolidStateNetworks\ddpmodule\Block\Customer\Products;
 use Magento\Downloadable\Model\Link\Purchased\Item;
 use Matricali\Security\EdgeAuth\TokenAuth;
 use Magento\Catalog\Model\ProductRepository;
-
+use Magento\Downloadable\Model\LinkRepository;
 
 
 /**
@@ -49,6 +49,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer,
         \Magento\Catalog\Model\ProductRepository $productRepository,
+        \Magento\Downloadable\Model\LinkRepository $linkRepository,
         \Magento\Downloadable\Model\ResourceModel\Link\Purchased\CollectionFactory $linksFactory,
         \Magento\Downloadable\Model\ResourceModel\Link\Purchased\Item\CollectionFactory $itemsFactory,
         array $data = []
@@ -57,6 +58,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $this->_linksFactory = $linksFactory;
         $this->_itemsFactory = $itemsFactory;
         $this->_productRepository = $productRepository;
+        $this->_linkRepository = $linkRepository;
         parent::__construct($context, $data);
     }
 
@@ -172,13 +174,24 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $url = "http://tokenauth.snxd.com/token/100MB.dat";
 
         $product = $this->_productRepository->getById($item->getProductId());
+        $links = $this->_linkRepository->getList($product->getSku());
+
+        $func = function($value) {
+            return $value->getLinkUrl();
+        };
+
+        $urls = array_map($func, $links);
+
+        foreach ($urls as &$url) {
+            error_log("URL: " . $url . "\r\n");
+        }
 
         $dlmid = $product->getCustomAttribute("dlmid")->getValue();
         $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
         $authUrl = $edgeAuth->generateToken();
 
-        $workflow = '{"analytics":{"transactionId":"Always Sunny","downloadName":"Charlie","dessert":"Ice Cream"},"items":{"name":"'. "fake name" .'","url":"' . $url . '?__token__=' . $authUrl . '"}}';
+        $workflow = '{"analytics":{"transactionId":"Always Sunny","downloadName":"Charlie","dessert":"Ice Cream"},"items":{"name":"'. $product->getName() .'","url":"' . $url . '?__token__=' . $authUrl . '"}}';
 
 
 
