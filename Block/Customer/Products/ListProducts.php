@@ -190,7 +190,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $dlmid = $product->getCustomAttribute("dlmid")->getValue();
         $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
 
-        $workflow = '{"analytics":{"' . $transid . '":"Always Sunny","downloadName":"Magento"},"items":[' . substr($items, 0, -1) . ']}';
+        $workflow = '{"analytics":{"' . $transid . '":"Always Sunny","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
 
         $wf = urlencode(base64_encode($workflow));
         return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
