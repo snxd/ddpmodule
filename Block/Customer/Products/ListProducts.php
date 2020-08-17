@@ -177,13 +177,14 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $links = $this->_linkRepository->getList($product->getSku());
 
         $func = function($value) {
-            return $value->getLinkUrl();
+            return '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '"}';
         };
 
         $urls = array_map($func, $links);
+        $items = "";
 
-        foreach ($urls as &$url) {
-            error_log("URL: " . $url . "\r\n");
+        foreach($urls as &$item) {
+            $items = $items . $item . ",";
         }
 
         $dlmid = $product->getCustomAttribute("dlmid")->getValue();
@@ -191,9 +192,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
         $authUrl = $edgeAuth->generateToken();
 
-        $workflow = '{"analytics":{"transactionId":"Always Sunny","downloadName":"Charlie","dessert":"Ice Cream"},"items":{"name":"'. $product->getName() .'","url":"' . $url . '?__token__=' . $authUrl . '"}}';
-
-
+        $workflow = '{"analytics":{"transactionId":"Always Sunny","downloadName":"Magento"},"items":[' . substr($items, 0, -1) . ']}';
 
         $wf = urlencode(base64_encode($workflow));
         return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
