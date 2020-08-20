@@ -179,6 +179,7 @@ class ListProducts extends \Magento\Framework\View\Element\Template
         $dlmid = $product->getCustomAttribute("dlmid")->getValue();
         $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
+        $edgeAuth->setAcl("/token/*");
         $authUrl = $edgeAuth->generateToken();
 
         $dlmitems = "";
