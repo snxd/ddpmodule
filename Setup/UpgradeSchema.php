@@ -1,5 +1,5 @@
 <?php
-namespace Mageplaza\HelloWorld\Setup;
+namespace SolidStateNetworks\ddpmodule\Setup;
 
 use Magento\Framework\Setup\UpgradeSchemaInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -9,6 +9,8 @@ class UpgradeSchema implements UpgradeSchemaInterface
 {
 	public function upgrade( SchemaSetupInterface $setup, ModuleContextInterface $context ) {
 		$installer = $setup;
+
+		echo "SETUP SOLID STATE PLUGIN!!!!!";
 
 		$installer->startSetup();
 
