@@ -15,4 +15,22 @@ class CDN extends \Magento\Framework\Model\AbstractModel implements \Mageplaza\H
 	{
 		return [self::CACHE_TAG . '_' . $this->getId()];
 	}*/
+
+	public function getAllOptions()
+    {
+        if ($this->_options === null) {
+            $this->_options = [
+                ['value' => 'one', 'label' => __('one')],
+                ['value' => 'two', 'label' => __('two')]
+            ];
+        }
+        return $this->_options;
+    }
+    final public function toOptionArray()
+    {
+         return array(
+            array('value' => 'one', 'label' => __('one')),
+            array('value' => 'two', 'label' => __('two'))
+         );
+     }
 }
