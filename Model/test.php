@@ -3,11 +3,11 @@ namespace namespace SolidStateNetworks\ddpmodule\Model;
 
 class Test extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
 {
-	const CACHE_TAG = 'solidstate_cdn';
+	const CACHE_TAG = 'solidstate_test';
 
 	protected function _construct()
 	{
-		$this->_init('SolidStateNetworks\ddpmodule\Model\CDN');
+		$this->_init('SolidStateNetworks\ddpmodule\Model\Test');
 	}
 
 	/*public function getIdentities()
