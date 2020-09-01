@@ -27,7 +27,7 @@
             </argument>
             <field name="testone">
                 <argument name="data" xsi:type="array">
-                    <item name="options" xsi:type="object">SolidStateNetworks\ddpmodule\Model\CDN</item>
+                    <item name="options" xsi:type="object">SolidStateNetworks\ddpmodule\Model\Test</item>
                     <item name="config" xsi:type="array">
                         <item name="label" xsi:type="string" translate="true">Testing Row</item>
                         <item name="sortOrder" xsi:type="number">230</item>
@@ -38,7 +38,7 @@
             </field>
              <field name="testtwo">
                 <argument name="data" xsi:type="array">
-                    <item name="options" xsi:type="object">SolidStateNetworks\ddpmodule\Model\CDN</item>
+                    <item name="options" xsi:type="object">SolidStateNetworks\ddpmodule\Model\Test</item>
                     <item name="config" xsi:type="array">
                         <item name="sortOrder" xsi:type="number">240</item>
                         <item name="dataType" xsi:type="string">string</item>
