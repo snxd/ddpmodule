@@ -1,5 +1,5 @@
 <?php 
-namespace namespace SolidStateNetworks\ddpmodule\Model;
+namespace SolidStateNetworks\ddpmodule\Model;
 
 class Test extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
 {
