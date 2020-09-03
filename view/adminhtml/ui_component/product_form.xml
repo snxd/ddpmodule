@@ -46,6 +46,15 @@
                     </item>
                 </argument>
             </field>
+            <settings>
+                <buttons>
+                    <button name="save" class="SolidStateNetworks\ddpmodule\Block\Adminhtml\Product\Edit\Button\CreateCdn"/>
+                </buttons>
+                <ajaxSaveType>simple</ajaxSaveType>
+                <deps>
+                    <dep>new_category_form.new_category_form_data_source</dep>
+                </deps>
+            </settings>
         </container>
     </fieldset>
 </form>
