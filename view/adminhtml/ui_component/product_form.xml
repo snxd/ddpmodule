@@ -46,10 +46,27 @@
                     </item>
                 </argument>
             </field>
-            <field name="create_cdn" formElement="true" id="button_id" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <item name="formElement" xsi:type="string">select</item>
+            <field name="create_cdnn" formElement="true" id="button_id" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="sortOrder" xsi:type="number">240</item>
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="formElement" xsi:type="string">button</item>
+                    </item>
+                </argument>
+                <item name="formElement" xsi:type="string">button</item>
                 <label>Label Text</label>
                 
+            </field>
+            <field name="testthree">
+                <argument name="data" xsi:type="array">
+                    <item name="options" xsi:type="object">SolidStateNetworks\ddpmodule\Model\Test</item>
+                    <item name="config" xsi:type="array">
+                        <item name="sortOrder" xsi:type="number">240</item>
+                        <item name="dataType" xsi:type="string">string</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                    </item>
+                </argument>
             </field>
             
         </container>
