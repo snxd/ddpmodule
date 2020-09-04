@@ -49,17 +49,9 @@
             <field name="create_cdn" id="button_id" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <item name="formElement" xsi:type="string">select</item>
                 <label>Label Text</label>
-                <frontend_model>SolidStateNetworks\ddpmodule\Block\Adminhtml\Product\Edit\Button\CreateCdn</frontend_model>
+                
             </field>
-            <settings>
-                <buttons>
-                    <button name="save" class="SolidStateNetworks\ddpmodule\Block\Adminhtml\Product\Edit\Button\CreateCdn"/>
-                </buttons>
-                <ajaxSaveType>simple</ajaxSaveType>
-                <deps>
-                    <dep>new_category_form.new_category_form_data_source</dep>
-                </deps>
-            </settings>
+            
         </container>
     </fieldset>
 </form>
