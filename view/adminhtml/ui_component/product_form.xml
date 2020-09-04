@@ -46,7 +46,7 @@
                     </item>
                 </argument>
             </field>
-            <field name="create_cdn" id="button_id" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <field name="create_cdn" formElement="true" id="button_id" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <item name="formElement" xsi:type="string">select</item>
                 <label>Label Text</label>
                 
