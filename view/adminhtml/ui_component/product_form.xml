@@ -12,63 +12,39 @@
                 <item name="ns" xsi:type="string">product_form</item>
             </item>
         </argument>
-        <container name="testing_group">
-            <argument name="data" xsi:type="array">
-                <item name="type" xsi:type="string">group</item>
-                <item name="config" xsi:type="array">
-                    <item name="formElement" xsi:type="string">container</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
-                    <item name="label" xsi:type="string" translate="true">Testing Group</item>
-                    <item name="required" xsi:type="boolean">false</item>
-                    <item name="sortOrder" xsi:type="number">220</item>
-                    <item name="breakLine" xsi:type="boolean">false</item>
-                    <item name="scopeLabel" xsi:type="string">[STORE VIEW]</item>
-                </item>
-            </argument>
-            <field name="testone">
-                <argument name="data" xsi:type="array">
-                    <item name="options" xsi:type="object">SolidStateNetworks\ddpmodule\Model\Test</item>
-                    <item name="config" xsi:type="array">
-                        <item name="label" xsi:type="string" translate="true">Testing Row</item>
-                        <item name="sortOrder" xsi:type="number">230</item>
-                        <item name="dataType" xsi:type="string">string</item>
-                        <item name="formElement" xsi:type="string">select</item>
-                    </item>
-                </argument>
-            </field>
-             <field name="testtwo">
-                <argument name="data" xsi:type="array">
-                    <item name="options" xsi:type="object">SolidStateNetworks\ddpmodule\Model\Test</item>
-                    <item name="config" xsi:type="array">
-                        <item name="sortOrder" xsi:type="number">240</item>
-                        <item name="dataType" xsi:type="string">string</item>
-                        <item name="formElement" xsi:type="string">select</item>
-                    </item>
-                </argument>
-            </field>
-            <field name="create_cdnn" formElement="true" id="button_id" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="sortOrder" xsi:type="number">240</item>
-                        <item name="dataType" xsi:type="string">string</item>
-                        <item name="formElement" xsi:type="string">button</item>
-                    </item>
-                </argument>
-                <item name="formElement" xsi:type="string">button</item>
-                <label>Label Text</label>
-                
-            </field>
-            <field name="testthree">
-                <argument name="data" xsi:type="array">
-                    <item name="options" xsi:type="object">SolidStateNetworks\ddpmodule\Model\Test</item>
-                    <item name="config" xsi:type="array">
-                        <item name="sortOrder" xsi:type="number">240</item>
-                        <item name="dataType" xsi:type="string">string</item>
-                        <item name="formElement" xsi:type="string">select</item>
-                    </item>
-                </argument>
-            </field>
-            
-        </container>
+        <field name="status">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="label" xsi:type="string" translate="true">Status</item>
+                   <item name="dataScope" xsi:type="string">status</item>
+                   <item name="sortOrder" xsi:type="number">10</item>
+                   <item name="componentType" xsi:type="string">field</item>
+                   <item name="dataType" xsi:type="string">text</item>
+                   <item name="formElement" xsi:type="string">select</item>
+                   <item name="options" xsi:type="array">
+                       <item name="0" xsi:type="array">
+                           <item name="value" xsi:type="number">0</item>
+                           <item name="label" xsi:type="string">Inactive</item>
+                       </item>
+                       <item name="1" xsi:type="array">
+                           <item name="value" xsi:type="number">1</item>
+                           <item name="label" xsi:type="string">Active</item>
+                       </item>
+                   </item>
+               </item>
+           </argument>
+       </field>
+       <field name="textField">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="label" xsi:type="string" translate="true">Text Field</item>
+                   <item name="dataScope" xsi:type="string">textField</item>
+                   <item name="sortOrder" xsi:type="number">20</item>
+                   <item name="componentType" xsi:type="string">field</item>
+                   <item name="dataType" xsi:type="string">text</item>
+                   <item name="formElement" xsi:type="string">input</item>
+               </item>
+           </argument>
+       </field>
     </fieldset>
 </form>
