@@ -39,7 +39,7 @@
                <item name="config" xsi:type="array">
                    <item name="label" xsi:type="string" translate="true">SSN DDP ID</item>
                    <item name="dataScope" xsi:type="string">dlmId</item>
-                   <item name="sortOrder" xsi:type="number">22</item>
+                   <item name="sortOrder" xsi:type="number">12</item>
                    <item name="componentType" xsi:type="string">field</item>
                    <item name="dataType" xsi:type="string">text</item>
                    <item name="formElement" xsi:type="string">input</item>
