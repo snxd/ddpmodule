@@ -33,7 +33,7 @@ class SolidDDP
     */
     public function execute(Observer $observer)
     {
-       $params               = $this->_request->getParams();
+       $params               = $this->request->getParams();
        $customFieldData = $params['solid_ddp'];
 
        error_log("field tet1 ");
@@ -57,6 +57,12 @@ class SolidDDP
         \Magento\Catalog\Model\Product $product
     ) {
         error_log("field afterInit ");
+
+        $params               = $this->request->getParams();
+        $customFieldData = $params['solid_ddp'];
+
+        error_log("field tet2 ");
+        error_log($customFieldData['dlmId']);
         /*if ($downloadable = $this->request->getPost('downloadable')) {
             $product->setTypeId(Type::TYPE_DOWNLOADABLE);
             $product->setDownloadableData($downloadable);
