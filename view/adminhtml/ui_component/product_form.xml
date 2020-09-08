@@ -34,12 +34,48 @@
                </item>
            </argument>
        </field>
-       <field name="textField">
+        <field name="dlmId">
            <argument name="data" xsi:type="array">
                <item name="config" xsi:type="array">
-                   <item name="label" xsi:type="string" translate="true">Text Field</item>
-                   <item name="dataScope" xsi:type="string">textField</item>
+                   <item name="label" xsi:type="string" translate="true">SSN DDP ID</item>
+                   <item name="dataScope" xsi:type="string">dlmId</item>
+                   <item name="sortOrder" xsi:type="number">22</item>
+                   <item name="componentType" xsi:type="string">field</item>
+                   <item name="dataType" xsi:type="string">text</item>
+                   <item name="formElement" xsi:type="string">input</item>
+               </item>
+           </argument>
+       </field>
+       <field name="cdnSecret">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="label" xsi:type="string" translate="true">CDN Shared Secret</item>
+                   <item name="dataScope" xsi:type="string">cdnSecret</item>
                    <item name="sortOrder" xsi:type="number">20</item>
+                   <item name="componentType" xsi:type="string">field</item>
+                   <item name="dataType" xsi:type="string">text</item>
+                   <item name="formElement" xsi:type="string">input</item>
+               </item>
+           </argument>
+       </field>
+       <field name="cdnTimeout">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="label" xsi:type="string" translate="true">CDN Link Expire Time</item>
+                   <item name="dataScope" xsi:type="string">cdnTimeout</item>
+                   <item name="sortOrder" xsi:type="number">21</item>
+                   <item name="componentType" xsi:type="string">field</item>
+                   <item name="dataType" xsi:type="string">text</item>
+                   <item name="formElement" xsi:type="string">input</item>
+               </item>
+           </argument>
+       </field>
+       <field name="cdnAcl">
+           <argument name="data" xsi:type="array">
+               <item name="config" xsi:type="array">
+                   <item name="label" xsi:type="string" translate="true">CDN ACL</item>
+                   <item name="dataScope" xsi:type="string">cdnAcl</item>
+                   <item name="sortOrder" xsi:type="number">22</item>
                    <item name="componentType" xsi:type="string">field</item>
                    <item name="dataType" xsi:type="string">text</item>
                    <item name="formElement" xsi:type="string">input</item>
