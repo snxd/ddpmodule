@@ -10,7 +10,7 @@ use Magento\Framework\App\RequestInterface;
 /**
  * Class for initialization downloadable info from request.
  */
-class Downloadable
+class SolidDDP
 {
     /**
      * @var RequestInterface
@@ -21,11 +21,25 @@ class Downloadable
      * @param RequestInterface $request
      */
     public function __construct(
-        RequestInterface $request,
+        RequestInterface $request
 
     ) {
         $this->request = $request;
 
+    }
+
+    /**
+    * @param Observer $observer
+    */
+    public function execute(Observer $observer)
+    {
+       $params               = $this->_request->getParams();
+       $customFieldData = $params['solid_ddp'];
+
+       error_log("field tet1 ");
+       error_log($customFieldData['dlmId']);
+       //logic to process custom fields data
+       // ...
     }
 
     /**
@@ -42,6 +56,7 @@ class Downloadable
         \Magento\Catalog\Controller\Adminhtml\Product\Initialization\Helper $subject,
         \Magento\Catalog\Model\Product $product
     ) {
+        error_log("field afterInit ");
         /*if ($downloadable = $this->request->getPost('downloadable')) {
             $product->setTypeId(Type::TYPE_DOWNLOADABLE);
             $product->setDownloadableData($downloadable);
