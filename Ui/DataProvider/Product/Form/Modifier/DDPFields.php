@@ -20,8 +20,6 @@ class DDPFields extends AbstractModifier
         $product   = $this->locator->getProduct();
         $productId = $product->getId();
 
-        error_log($data[])
-
         $data = array_replace_recursive(
             $data,
             [
