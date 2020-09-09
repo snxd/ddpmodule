@@ -5,14 +5,15 @@ namespace SolidStateNetworks\ddpmodule\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\App\RequestInterface;
 
-class DDPSave implements ObserverInterface, RequestInterface
+class DDPSave implements ObserverInterface
 {    
 	public function __construct(
-	   Context $context
+		RequestInterface $request
+	   //Context $context
 	   //other objects
 	) {
-	   $this->context     = $context;
-	   $this->_request   = $context->getRequest();
+	   //$this->context     = $context;
+	   $this->_request   = $request;//$context->getRequest();
 	   //other objects
 	}
 
@@ -25,7 +26,7 @@ class DDPSave implements ObserverInterface, RequestInterface
         //$data = $post->getRequest()->getPost();
         //$productAsArray = $data['product'];
 
-        $params               = $this->request->getParams();
+        $params               = $this->_request->getParams();
         $customFieldData = $data['solid_ddp'];
 
         error_log("observer .. ");
