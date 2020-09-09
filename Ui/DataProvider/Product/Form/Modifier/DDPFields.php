@@ -14,9 +14,12 @@ class DDPFields extends AbstractModifier
     ) {
         $this->locator = $locator;
     }
-    
+
     public function modifyData(array $data)
     {
+        $product   = $this->locator->getProduct();
+        $productId = $product->getId();
+        
         $data = array_replace_recursive(
             $data,
             [
