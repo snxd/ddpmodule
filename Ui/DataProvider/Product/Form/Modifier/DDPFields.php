@@ -74,7 +74,7 @@ class DDPFields extends AbstractModifier
                         'label' => __('Custom Field 2'),
                         'componentType' => Field::NAME,
                         'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
-                        'dataScope' => 'enabled',
+                        'dataScope' => 'enabled2',
                         'dataType' => Text::NAME,
                         'sortOrder' => 10
                     ],
