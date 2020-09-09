@@ -35,7 +35,8 @@ class DDPFields extends AbstractModifier
                             ],
                         ],
                     ],
-                    'children' => ['custom_field' => $this->getCustomField()],
+                    'children' => ['custom_field' => $this->getCustomField(),
+                                   'custom_f2' => $this->getCField()],
                 ]
             ]
         );
@@ -58,6 +59,24 @@ class DDPFields extends AbstractModifier
                             ['value' => '0', 'label' => __('No')],
                             ['value' => '1', 'label' => __('Yes')]
                         ],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    public function getCField()
+    {
+        return [
+            'arguments' => [
+                'data' => [
+                    'config' => [
+                        'label' => __('Custom Field 2'),
+                        'componentType' => Field::NAME,
+                        'formElement' => Input::NAME,
+                        'dataScope' => 'enabled',
+                        'dataType' => Text::NAME,
+                        'sortOrder' => 10
                     ],
                 ],
             ],
