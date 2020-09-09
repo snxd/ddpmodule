@@ -19,12 +19,14 @@ class DDPFields extends AbstractModifier
     {
         $product   = $this->locator->getProduct();
         $productId = $product->getId();
-        
+
+        error_log($data[])
+
         $data = array_replace_recursive(
             $data,
             [
                 $productId => [
-                    'product' => [
+                    'solidddp' => [
                         'enabled2' => 'your_value'
                     ]
                 ]
@@ -45,14 +47,14 @@ class DDPFields extends AbstractModifier
                             'config' => [
                                 'label' => __('Solid Fieldset'),
                                 'componentType' => Fieldset::NAME,
-                                'dataScope' => 'data.product.solidddp',
+                                'dataScope' => 'data.solidddp',
                                 'collapsible' => true,
                                 'sortOrder' => 5,
                             ],
                         ],
                     ],
-                    'children' => ['custom_field' => $this->getCustomField(),
-                                   'custom_f2' => $this->getCField()],
+                    'children' => ['enabled' => $this->getCustomField(),
+                                   'enabled2' => $this->getCField()],
                 ]
             ]
         );
