@@ -14,10 +14,23 @@ class DDPFields extends AbstractModifier
     ) {
         $this->locator = $locator;
     }
+    
     public function modifyData(array $data)
     {
+        $data = array_replace_recursive(
+            $data,
+            [
+                $productId => [
+                    'product' => [
+                        'enabled2' => 'your_value'
+                    ]
+                ]
+            ]
+        );
+
         return $data;
     }
+
     public function modifyMeta(array $meta)
     {
         $meta = array_replace_recursive(
