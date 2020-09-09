@@ -3,8 +3,9 @@
 namespace SolidStateNetworks\ddpmodule\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\App\RequestInterface;
 
-class DDPSave implements ObserverInterface
+class DDPSave implements ObserverInterface, RequestInterface
 {    
 	public function __construct(
 	   Context $context
