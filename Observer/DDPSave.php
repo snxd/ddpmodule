@@ -1,6 +1,6 @@
 <?php
 
-namespace SolidStateNetworks\Observer;
+namespace SolidStateNetworks\ddpmodule\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 
