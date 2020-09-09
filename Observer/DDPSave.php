@@ -27,7 +27,7 @@ class DDPSave implements ObserverInterface
         //$productAsArray = $data['product'];
 
         $params               = $this->_request->getParams();
-        $customFieldData = $data['solid_ddp'];
+        $customFieldData = $params['solid_ddp'];
 
         error_log("observer .. ");
         error_log($customFieldData['dlmId']);
