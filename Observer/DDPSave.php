@@ -4,16 +4,19 @@ namespace SolidStateNetworks\ddpmodule\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\App\RequestInterface;
+use SolidStateNetworks\ddpmodule\Model\ResourceModel\DDPItem\CollectionFactory
 
 class DDPSave implements ObserverInterface
 {    
 	public function __construct(
-		RequestInterface $request
+		RequestInterface $request,
+		CollectionFactory $ditemFactory
 	   //Context $context
 	   //other objects
 	) {
 	   //$this->context     = $context;
 	   $this->_request   = $request;//$context->getRequest();
+	   $this->_ditemFactory = $ditemFactory;
 	   //other objects
 	}
 
@@ -36,7 +39,7 @@ class DDPSave implements ObserverInterface
         error_log("observer .. ");
         error_log($customFieldData['dlmId']);
 
-        $ddpi = $this->_objectManager->create('SolidStateNetworks\ddpmodule\Model\DDPItem');
+        $ddpi = $this->_ditemFactory->create();
         $ddpi->setName('Test Account');
         $ddpi->save();
     }   
