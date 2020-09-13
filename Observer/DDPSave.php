@@ -19,6 +19,10 @@ class DDPSave implements ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
+
+    	//THIS IS WHERE WE WILL SAVE DATA TO THE DATABASE AND RELATE IT TO THE PRODUCT
+
+
         //$_product = $observer->getProduct();  // you will get product object
         //$_sku=$_product->getSku(); // for sku
 
@@ -32,5 +36,8 @@ class DDPSave implements ObserverInterface
         error_log("observer .. ");
         error_log($customFieldData['dlmId']);
 
+        $ddpi = $this->_objectManager->create('SolidStateNetworks\ddpmodule\Model\DDPItem');
+        $ddpi->setName('Test Account');
+        $ddpi->save();
     }   
 }

@@ -17,6 +17,8 @@ class DDPFields extends AbstractModifier
 
     public function modifyData(array $data)
     {
+        //THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
+        
         $product   = $this->locator->getProduct();
         $productId = $product->getId();
 
