@@ -14,7 +14,7 @@ use Magento\Framework\Model\AbstractModel;
  *
  *
  */
-class Link extends AbstractModel
+class DDPItem extends AbstractModel
 {
 
 
