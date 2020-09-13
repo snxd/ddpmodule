@@ -39,7 +39,8 @@ class DDPSave implements ObserverInterface
         error_log($customFieldData['dlmId']);
 
         $ddpi = $this->_ditemFactory->create();
-        $ddpi->setName('Test Account');
+        $ddpi->setName('Test Account 2');
+        $ddpi->setData('acl','abc123')
         $ddpi->save();
     }   
 }
