@@ -4,7 +4,7 @@ namespace SolidStateNetworks\ddpmodule\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\App\RequestInterface;
-use SolidStateNetworks\ddpmodule\Model\ResourceModel\DDPItem\CollectionFactory;
+use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
 
 class DDPSave implements ObserverInterface
 {    
