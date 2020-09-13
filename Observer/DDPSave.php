@@ -10,7 +10,7 @@ class DDPSave implements ObserverInterface
 {    
 	public function __construct(
 		RequestInterface $request,
-		CollectionFactory $ditemFactory
+		DDPItemFactory $ditemFactory
 	   //Context $context
 	   //other objects
 	) {
