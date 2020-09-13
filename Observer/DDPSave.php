@@ -40,7 +40,7 @@ class DDPSave implements ObserverInterface
 
         $ddpi = $this->_ditemFactory->create();
         $ddpi->setName('Test Account 2');
-        $ddpi->setData('acl','abc123')
+        $ddpi->setData('acl','abc123');
         $ddpi->save();
     }   
 }
