@@ -22,7 +22,6 @@ class DDPSave implements ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-
     	//THIS IS WHERE WE WILL SAVE DATA TO THE DATABASE AND RELATE IT TO THE PRODUCT
 
 
