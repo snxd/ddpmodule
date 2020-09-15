@@ -82,53 +82,6 @@ class DDPFields extends AbstractModifier
         return $meta;
     }
 
-
-    /*public function modifyMeta(array $meta)
-    {
-        $meta = array_replace_recursive(
-            $meta,
-            [
-                'custom_fieldset' => [
-                    'arguments' => [
-                        'data' => [
-                            'config' => [
-                                'label' => __('Solid State Networks DDP'),
-                                'componentType' => Fieldset::NAME,
-                                'dataScope' => 'data.solidddp',
-                                'collapsible' => true,
-                                'sortOrder' => 5,
-                            ],
-                        ],
-                    ],
-                    'children' => ['enabled' => $this->getCustomField()],
-                ]
-            ]
-        );
-        return $meta;
-    }*/
-
-    public function getCustomField()
-    {
-        return [
-            'arguments' => [
-                'data' => [
-                    'config' => [
-                        'label' => __('Custom Field'),
-                        'componentType' => Field::NAME,
-                        'formElement' => Select::NAME,
-                        'dataScope' => 'enabled',
-                        'dataType' => Text::NAME,
-                        'sortOrder' => 10,
-                        'options' => [
-                            ['value' => '0', 'label' => __('No')],
-                            ['value' => '1', 'label' => __('Yes')]
-                        ],
-                    ],
-                ],
-            ],
-        ];
-    }
-
     public function getCustomFields()
     {
         return [

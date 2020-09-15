@@ -17,6 +17,10 @@ This README would normally document whatever steps are necessary to get your app
 * How to run tests
 * Deployment instructions
 
+call this on magento install
+sudo composer require matricali/akamai-token-auth --no-plugins --no-scripts
+sudo /opt/bitnami/apps/magento/htdocs/bin/magento-cli downloadable:domains:add tokenauth.snxd.com
+
 ### Contribution guidelines ###
 
 * Writing tests
@@ -27,3 +31,4 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+
