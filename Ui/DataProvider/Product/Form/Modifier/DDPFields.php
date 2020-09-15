@@ -34,7 +34,7 @@ class DDPFields extends AbstractModifier
             [
                 $productId => [
                     'solidddp' => [
-                        'enabled2' => $ddpi->getName();
+                        'enabled2' => $ddpi->getName()
                     ]
                 ]
             ]
