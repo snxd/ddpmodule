@@ -14,7 +14,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 				$installer->getTable($tableName)
 			)
 				->addColumn(
-					'cdn_id',
+					'ddp_id',
 					\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
 					null,
 					[
@@ -23,14 +23,28 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 						'primary'  => true,
 						'unsigned' => true,
 					],
-					'CDN ID'
+					'DDP ID'
 				)
 				->addColumn(
-					'name',
+					'enabled',
+					\Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+					1,
+					[],
+					'Enable or disable the DDP plugin for this product'
+				)
+				->addColumn(
+					'dlm_id',
 					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-					255,
-					['nullable => false'],
-					'Post Name'
+					32,
+					[],
+					'ID for the DLM at Solid State Networks'
+				)
+				->addColumn(
+					'product_id',
+					\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+					8,
+					[],
+					'The Magento product associated with this record'
 				)
 				->addColumn(
 					'acl',

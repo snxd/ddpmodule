@@ -23,18 +23,26 @@ class DDPFields extends AbstractModifier
     {
         //THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
 
+        if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
+            return;
+        }
+
         $product   = $this->locator->getProduct();
         $productId = $product->getId();
 
         $ddpi = $this->_ditemFactory->create();
-        $ddpi->load("abc123", "acl");
+        $ddpi->load($productId, "product_id");
 
         $data = array_replace_recursive(
             $data,
             [
                 $productId => [
                     'solidddp' => [
-                        'enabled2' => $ddpi->getName()
+                        'enabled' => $ddpi->getData('enabled'),
+                        'dlm_id' => $ddpi->getData('dlm_id'),
+                        'acl' => $ddpi->getData('acl'),
+                        'ttl' => $ddpi->getData('ttl'),
+                        'secret' => $ddpi->getData('secret'),
                     ]
                 ]
             ]
@@ -45,6 +53,10 @@ class DDPFields extends AbstractModifier
 
     public function modifyMeta(array $meta)
     {
+        if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
+            return;
+        }
+
         $meta = array_replace_recursive(
             $meta,
             [
@@ -52,7 +64,7 @@ class DDPFields extends AbstractModifier
                     'arguments' => [
                         'data' => [
                             'config' => [
-                                'label' => __('Solid Fieldset'),
+                                'label' => __('Solid State Networks DDP'),
                                 'componentType' => Fieldset::NAME,
                                 'dataScope' => 'data.solidddp',
                                 'collapsible' => true,
@@ -60,48 +72,87 @@ class DDPFields extends AbstractModifier
                             ],
                         ],
                     ],
-                    'children' => ['enabled' => $this->getCustomField(),
-                                   'enabled2' => $this->getCField()],
+                    'children' => $this->getCustomFields()
                 ]
             ]
         );
         return $meta;
     }
 
-    public function getCustomField()
+    public function getCustomFields()
     {
         return [
-            'arguments' => [
-                'data' => [
-                    'config' => [
-                        'label' => __('Custom Field'),
-                        'componentType' => Field::NAME,
-                        'formElement' => Select::NAME,
-                        'dataScope' => 'enabled',
-                        'dataType' => Text::NAME,
-                        'sortOrder' => 10,
-                        'options' => [
-                            ['value' => '0', 'label' => __('No')],
-                            ['value' => '1', 'label' => __('Yes')]
+            'enabled' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('Enabled'),
+                            'componentType' => Field::NAME,
+                            'formElement' => Select::NAME,
+                            'dataScope' => 'enabled',
+                            'dataType' => Text::NAME,
+                            'sortOrder' => 10,
+                            'options' => [
+                                ['value' => '0', 'label' => __('No')],
+                                ['value' => '1', 'label' => __('Yes')]
+                            ],
                         ],
                     ],
                 ],
             ],
-        ];
-    }
-
-    public function getCField()
-    {
-        return [
-            'arguments' => [
-                'data' => [
-                    'config' => [
-                        'label' => __('Custom Field 2'),
-                        'componentType' => Field::NAME,
-                        'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
-                        'dataScope' => 'enabled2',
-                        'dataType' => Text::NAME,
-                        'sortOrder' => 10
+            'dlm_id' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('Solid DLM ID'),
+                            'componentType' => Field::NAME,
+                            'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
+                            'dataScope' => 'dlm_id',
+                            'dataType' => Text::NAME,
+                            'sortOrder' => 20
+                        ],
+                    ],
+                ],
+            ],
+            'acl' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('CDN ACL'),
+                            'componentType' => Field::NAME,
+                            'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
+                            'dataScope' => 'acl',
+                            'dataType' => Text::NAME,
+                            'sortOrder' => 30
+                        ],
+                    ],
+                ],
+            ],
+            'ttl' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('CDN Time to Live'),
+                            'componentType' => Field::NAME,
+                            'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
+                            'dataScope' => 'ttl',
+                            'dataType' => Text::NAME,
+                            'sortOrder' => 40
+                        ],
+                    ],
+                ],
+            ],
+            'secret' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('CDN Shared Secret'),
+                            'componentType' => Field::NAME,
+                            'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
+                            'dataScope' => 'secret',
+                            'dataType' => Text::NAME,
+                            'sortOrder' => 50
+                        ],
                     ],
                 ],
             ],

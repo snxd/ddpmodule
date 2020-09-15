@@ -23,24 +23,22 @@ class DDPSave implements ObserverInterface
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
     	//THIS IS WHERE WE WILL SAVE DATA TO THE DATABASE AND RELATE IT TO THE PRODUCT
-
-
-        //$_product = $observer->getProduct();  // you will get product object
-        //$_sku=$_product->getSku(); // for sku
-
-        //$post = $observer->getController();
-        //$data = $post->getRequest()->getPost();
-        //$productAsArray = $data['product'];
-
         $params               = $this->_request->getParams();
-        $customFieldData = $params['solid_ddp'];
+        $customFieldData = $params['solidddp'];
 
-        error_log("observer .. ");
-        error_log($customFieldData['dlmId']);
-
+        $product = $observer->getProduct();  // you will get product object
+        $productId = $product->getId();
+        
         $ddpi = $this->_ditemFactory->create();
-        $ddpi->setName('Test Account 2');
-        $ddpi->setData('acl','abc123');
+        $ddpi->load($productId, "product_id");
+        $ddpi->setData('product_id', $productId);
+
+        $ddpi->setData('acl',$customFieldData['acl']);
+        $ddpi->setData('ttl',$customFieldData['ttl']);
+        $ddpi->setData('secret',$customFieldData['secret']);
+        $ddpi->setData('dlm_id',$customFieldData['dlm_id']);
+        $ddpi->setData('enabled',$customFieldData['enabled']);
+
         $ddpi->save();
     }   
 }
