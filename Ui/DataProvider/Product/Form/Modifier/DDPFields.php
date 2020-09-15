@@ -6,28 +6,35 @@ use Magento\Ui\Component\Form\Fieldset;
 use Magento\Ui\Component\Form\Field;
 use Magento\Ui\Component\Form\Element\Select;
 use Magento\Ui\Component\Form\Element\DataType\Text;
+use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
+
 class DDPFields extends AbstractModifier
 {
     private $locator;
     public function __construct(
-        LocatorInterface $locator
+        LocatorInterface $locator,
+        DDPItemFactory $ditemFactory
     ) {
         $this->locator = $locator;
+        $this->_ditemFactory = $ditemFactory;
     }
 
     public function modifyData(array $data)
     {
         //THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
-        
+
         $product   = $this->locator->getProduct();
         $productId = $product->getId();
+
+        $ddpi = $this->_ditemFactory->create();
+        $ddpi->load("abc123", "acl");
 
         $data = array_replace_recursive(
             $data,
             [
                 $productId => [
                     'solidddp' => [
-                        'enabled2' => 'your_value'
+                        'enabled2' => $ddpi->getName();
                     ]
                 ]
             ]
