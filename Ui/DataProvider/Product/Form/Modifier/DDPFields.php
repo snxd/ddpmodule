@@ -24,9 +24,11 @@ class DDPFields extends AbstractModifier
     {
         //THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
 
-        if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
+        /*if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
             return $data;
-        }
+        }*/
+
+        error_log("Prod Type " . $this->locator->getProduct()->getTypeId());
 
         $product   = $this->locator->getProduct();
         $productId = $product->getId();
@@ -52,11 +54,11 @@ class DDPFields extends AbstractModifier
         return $data;
     }
 
-    /*public function modifyMeta(array $meta)
+    public function modifyMeta(array $meta)
     {
-        if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
-            return;
-        }
+        /*if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
+            return $meta;
+        }*/
 
         $meta = array_replace_recursive(
             $meta,
@@ -78,10 +80,10 @@ class DDPFields extends AbstractModifier
             ]
         );
         return $meta;
-    }*/
+    }
 
 
-    public function modifyMeta(array $meta)
+    /*public function modifyMeta(array $meta)
     {
         $meta = array_replace_recursive(
             $meta,
@@ -103,7 +105,7 @@ class DDPFields extends AbstractModifier
             ]
         );
         return $meta;
-    }
+    }*/
 
     public function getCustomField()
     {
