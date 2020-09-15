@@ -1,5 +1,6 @@
 <?php
 namespace SolidStateNetworks\ddpmodule\Ui\DataProvider\Product\Form\Modifier;
+use Magento\Downloadable\Model\Product\Type;
 use Magento\Catalog\Model\Locator\LocatorInterface;
 use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
 use Magento\Ui\Component\Form\Fieldset;
