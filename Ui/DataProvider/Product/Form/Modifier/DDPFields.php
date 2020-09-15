@@ -52,7 +52,7 @@ class DDPFields extends AbstractModifier
         return $data;
     }
 
-    public function modifyMeta(array $meta)
+    /*public function modifyMeta(array $meta)
     {
         if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
             return;
@@ -78,10 +78,10 @@ class DDPFields extends AbstractModifier
             ]
         );
         return $meta;
-    }
+    }*/
 
 
-    /*public function modifyMeta(array $meta)
+    public function modifyMeta(array $meta)
     {
         $meta = array_replace_recursive(
             $meta,
@@ -103,7 +103,7 @@ class DDPFields extends AbstractModifier
             ]
         );
         return $meta;
-    }*/
+    }
 
     public function getCustomField()
     {
