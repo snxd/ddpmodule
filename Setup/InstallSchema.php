@@ -6,7 +6,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 
 	public function install(\Magento\Framework\Setup\SchemaSetupInterface $setup, \Magento\Framework\Setup\ModuleContextInterface $context)
 	{
-		$tableName = "solidstatenetworks_ddpmodule_cdnx1";
+		$tableName = "solidstatenetworks_ddpmodule";
 		$installer = $setup;
 		$installer->startSetup();
 		if (!$installer->tableExists($tableName)) {

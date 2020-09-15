@@ -17,6 +17,6 @@ class DDPItem extends AbstractDb
      */
     public function _construct()
     {
-        $this->_init('solidstatenetworks_ddpmodule_cdnx1', 'cdn_id');
+        $this->_init('solidstatenetworks_ddpmodule', 'ddp_id');
     }
 }
