@@ -22,11 +22,11 @@ class DDPFields extends AbstractModifier
 
     public function modifyData(array $data)
     {
-        //THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
+        THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
 
-        /*if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
+        if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
             return $data;
-        }*/
+        }
 
         error_log("Prod Type " . $this->locator->getProduct()->getTypeId());
 
@@ -56,10 +56,10 @@ class DDPFields extends AbstractModifier
 
     public function modifyMeta(array $meta)
     {
-        $ptype = $this->locator->getProduct()->getTypeId();
-        $virtual = $this->locator->getProduct()->isVirtual();
+        //$ptype = $this->locator->getProduct()->getTypeId();
+        //$virtual = $this->locator->getProduct()->isVirtual();
 
-        if($ptype !== Type::TYPE_DOWNLOADABLE && !$virtual) {
+        if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
             return $meta;
         }
 
