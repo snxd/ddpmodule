@@ -56,9 +56,12 @@ class DDPFields extends AbstractModifier
 
     public function modifyMeta(array $meta)
     {
-        /*if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
+        $ptype = $this->locator->getProduct()->getTypeId();
+        $virtual = $this->locator->getProduct()->isVirtual();
+
+        if($ptype !== Type::TYPE_DOWNLOADABLE && !$virtual) {
             return $meta;
-        }*/
+        }
 
         $meta = array_replace_recursive(
             $meta,

@@ -75,10 +75,12 @@ class DDPListProducts extends \Magento\Downloadable\Block\Customer\Products\List
      */
     public function getDownloadUrl($item)
     {
+        error_log("mes 1");
         $productId = $item->getProductId();
         $ddpi = $this->_ditemFactory->create();
         $ddpi->load($productId, "product_id");
 
+        error_log("mes 2");
         if($ddpi->getData("ddp_id") == null || $ddpi->getData("enabled") != true) {
             return parent::getDownloadUrl($item);
         }
@@ -86,6 +88,7 @@ class DDPListProducts extends \Magento\Downloadable\Block\Customer\Products\List
         $product = $this->_productRepository->getById($item->getProductId());
         $links = $this->_linkRepository->getList($product->getSku());
 
+        error_log("mes 3");
         $dlmid = $ddpi->getData("dlm_id");
         $cdnpass = $ddpi->getData("secret");
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
@@ -95,6 +98,7 @@ class DDPListProducts extends \Magento\Downloadable\Block\Customer\Products\List
 
         $dlmitems = "";
 
+        error_log("mes 4");
         foreach($links as &$value) {
             $dlmitems = $dlmitems . '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '?__token__=' . $authUrl . '"},';
         }
@@ -103,6 +107,8 @@ class DDPListProducts extends \Magento\Downloadable\Block\Customer\Products\List
 
         $workflow = '{"analytics":{"transactionId":"' . $transid . '","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
 
+
+        error_log("mes 5");
         $wf = urlencode(base64_encode($workflow));
         return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
     }
