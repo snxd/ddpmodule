@@ -184,10 +184,15 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
 
         error_log("mes 3");
         $dlmid = $ddpi->getData("dlm_id");
+        error_log("mes 31");
         $cdnpass = $ddpi->getData("secret");
+        error_log("mes 32");
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
+        error_log("mes 33");
         $edgeAuth->setAcl($ddpi->getData("acl"));
+        error_log("mes 34");
         $edgeAuth->setWindow($ddpi->getData("ttl"));
+        error_log("mes 35");
         $authUrl = $edgeAuth->generateToken();
 
         $dlmitems = "";
