@@ -28,8 +28,6 @@ class DDPFields extends AbstractModifier
             return $data;
         }
 
-        error_log("Prod Type " . $this->locator->getProduct()->getTypeId());
-
         $product   = $this->locator->getProduct();
         $productId = $product->getId();
 
