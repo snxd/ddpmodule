@@ -71,7 +71,7 @@ class DDPFields extends AbstractModifier
                                 'componentType' => Fieldset::NAME,
                                 'dataScope' => 'data.solidddp',
                                 'collapsible' => true,
-                                'sortOrder' => 5,
+                                'sortOrder' => 21,
                             ],
                         ],
                     ],

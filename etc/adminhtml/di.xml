@@ -11,7 +11,7 @@
             <argument name="modifiers" xsi:type="array">
                 <item name="ddpmodule" xsi:type="array">
                     <item name="class" xsi:type="string">SolidStateNetworks\ddpmodule\Ui\DataProvider\Product\Form\Modifier\DDPFields</item>
-                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="sortOrder" xsi:type="number">21</item>
                 </item>
             </argument>
         </arguments>
