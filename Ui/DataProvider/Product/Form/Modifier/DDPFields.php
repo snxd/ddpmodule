@@ -22,7 +22,7 @@ class DDPFields extends AbstractModifier
 
     public function modifyData(array $data)
     {
-        THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
+        //THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
 
         if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
             return $data;
