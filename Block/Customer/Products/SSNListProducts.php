@@ -13,7 +13,8 @@ use Magento\Downloadable\Model\Link\Purchased\Item;
 use Matricali\Security\EdgeAuth\TokenAuth;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Downloadable\Model\LinkRepository;
-use Magento\Downloadable\Block\Customer\Products\ListProducts;
+//use Magento\Downloadable\Block\Customer\Products\ListProducts;
+use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
 
 /**
  * Block to display downloadable links bought by customer
@@ -50,6 +51,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
         \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer,
         \Magento\Catalog\Model\ProductRepository $productRepository,
         \Magento\Downloadable\Model\LinkRepository $linkRepository,
+        DDPItemFactory $ditemFactory,
         \Magento\Downloadable\Model\ResourceModel\Link\Purchased\CollectionFactory $linksFactory,
         \Magento\Downloadable\Model\ResourceModel\Link\Purchased\Item\CollectionFactory $itemsFactory,
         array $data = []
@@ -57,6 +59,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
         $this->currentCustomer = $currentCustomer;
         $this->_linksFactory = $linksFactory;
         $this->_itemsFactory = $itemsFactory;
+        $this->_ditemFactory = $ditemFactory;
         $this->_productRepository = $productRepository;
         $this->_linkRepository = $linkRepository;
         parent::__construct($context, $data);
