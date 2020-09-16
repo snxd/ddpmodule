@@ -13,7 +13,7 @@ use Magento\Downloadable\Model\Link\Purchased\Item;
 use Matricali\Security\EdgeAuth\TokenAuth;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Downloadable\Model\LinkRepository;
-
+use Magento\Downloadable\Block\Customer\Products\ListProducts;
 
 /**
  * Block to display downloadable links bought by customer
@@ -21,7 +21,7 @@ use Magento\Downloadable\Model\LinkRepository;
  * @api
  * @since 100.0.2
  */
-class SSNListProducts extends \Magento\Downloadable\Block\Customer\Products\ListProducts
+class SSNListProducts extends \Magento\Framework\View\Element\Template
 {
     /**
      * @var \Magento\Customer\Helper\Session\CurrentCustomer
@@ -165,41 +165,41 @@ class SSNListProducts extends \Magento\Downloadable\Block\Customer\Products\List
     public function getDownloadUrl($item)
     {
 
-        error_log("tet1111");  
+        error_log("mes 1");
+        $productId = $item->getProductId();
+        $ddpi = $this->_ditemFactory->create();
+        $ddpi->load($productId, "product_id");
 
-        //$url = $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => false]);
-
-        //error_log("URL " . $url . "\r\n");
-
-        $url = "http://tokenauth.snxd.com/token/100MB.dat";
+        error_log("mes 2");
+        if($ddpi->getData("ddp_id") == null || $ddpi->getData("enabled") != true) {
+            $u = ListProducts->getDownloadUrl($item);
+            return $u;
+        }
 
         $product = $this->_productRepository->getById($item->getProductId());
         $links = $this->_linkRepository->getList($product->getSku());
 
-        $dlmid = $product->getCustomAttribute("dlmid")->getValue();
-        $cdnpass = $product->getCustomAttribute("cdnpassword")->getValue();
+        error_log("mes 3");
+        $dlmid = $ddpi->getData("dlm_id");
+        $cdnpass = $ddpi->getData("secret");
         $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
-        $edgeAuth->setAcl("/token/*");
+        $edgeAuth->setAcl($ddpi->getData("acl"));
+        $edgeAuth->setWindow($ddpi->getData("ttl"));
         $authUrl = $edgeAuth->generateToken();
 
         $dlmitems = "";
 
-        error_log("tet1 " . $authUrl);
-
+        error_log("mes 4");
         foreach($links as &$value) {
             $dlmitems = $dlmitems . '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '?__token__=' . $authUrl . '"},';
         }
 
-        error_log($dlmitems);
-
         $transid = $item->getPurchased()->getOrderId();
-
-        error_log("tet3");
 
         $workflow = '{"analytics":{"transactionId":"' . $transid . '","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
 
-        error_log("tet5");
 
+        error_log("mes 5");
         $wf = urlencode(base64_encode($workflow));
         return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
     }
