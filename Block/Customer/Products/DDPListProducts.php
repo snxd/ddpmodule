@@ -14,6 +14,7 @@ use Matricali\Security\EdgeAuth\TokenAuth;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Downloadable\Model\LinkRepository;
 use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
+use Magento\Downloadable\Block\Customer\Products\ListProducts;
 
 
 /**
@@ -22,7 +23,7 @@ use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
  * @api
  * @since 100.0.2
  */
-class DDPListProducts extends \Magento\Downloadable\Block\Customer\Products\ListProducts
+class DDPListProducts extends \Magento\Framework\View\Element\Template
 {
     /**
      * @var \Magento\Customer\Helper\Session\CurrentCustomer
