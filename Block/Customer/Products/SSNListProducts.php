@@ -21,7 +21,7 @@ use Magento\Downloadable\Model\LinkRepository;
  * @api
  * @since 100.0.2
  */
-class SSNListProducts extends \Magento\Framework\View\Element\Template
+class SSNListProducts extends \Magento\Downloadable\Block\Customer\Products\ListProducts
 {
     /**
      * @var \Magento\Customer\Helper\Session\CurrentCustomer
