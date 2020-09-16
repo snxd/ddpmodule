@@ -172,8 +172,8 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
 
         error_log("mes 2");
         if($ddpi->getData("ddp_id") == null || $ddpi->getData("enabled") != true) {
-            $u = ListProducts->getDownloadUrl($item);
-            return $u;
+            //$u = ListProducts->getDownloadUrl($item);
+            return "unknown";
         }
 
         $product = $this->_productRepository->getById($item->getProductId());
