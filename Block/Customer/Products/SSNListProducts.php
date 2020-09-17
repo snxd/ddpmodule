@@ -186,7 +186,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
             $product = $this->_productRepository->getById($item->getProductId());
             $links = $this->_linkRepository->getList($product->getSku());
 
-            $dlmid = $ddpi->getData("dlm_id");
+            $dlmid = $ddpi->getData("dlm_id_win");
             $cdnpass = $ddpi->getData("secret");
             $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
             $edgeAuth->setAcl($ddpi->getData("acl"));
@@ -208,6 +208,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
             $dlmfile = "downloader.exe";
             if($os == 'macos') {
                 $dlmfile = "downloader.dmg";
+                $dlmid = $ddpi->getData("dlm_id_macos");
             }
 
             return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/" . $dlmfile;

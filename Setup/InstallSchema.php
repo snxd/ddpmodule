@@ -33,11 +33,18 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 					'Enable or disable the DDP plugin for this product'
 				)
 				->addColumn(
-					'dlm_id',
+					'dlm_id_win',
 					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
 					32,
 					[],
-					'ID for the DLM at Solid State Networks'
+					'ID for the Windows DLM at Solid State Networks'
+				)
+				->addColumn(
+					'dlm_id_macos',
+					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+					32,
+					[],
+					'ID for the MacOS DLM at Solid State Networks'
 				)
 				->addColumn(
 					'product_id',

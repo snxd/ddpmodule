@@ -36,7 +36,8 @@ class DDPSave implements ObserverInterface
         $ddpi->setData('acl',$customFieldData['acl']);
         $ddpi->setData('ttl',$customFieldData['ttl']);
         $ddpi->setData('secret',$customFieldData['secret']);
-        $ddpi->setData('dlm_id',$customFieldData['dlm_id']);
+        $ddpi->setData('dlm_id_win',$customFieldData['dlm_id_win']);
+        $ddpi->setData('dlm_id_macos',$customFieldData['dlm_id_macos']);
         $ddpi->setData('enabled',$customFieldData['enabled']);
 
         $ddpi->save();

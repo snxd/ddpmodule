@@ -40,7 +40,8 @@ class DDPFields extends AbstractModifier
                 $productId => [
                     'solidddp' => [
                         'enabled' => $ddpi->getData('enabled'),
-                        'dlm_id' => $ddpi->getData('dlm_id'),
+                        'dlm_id_win' => $ddpi->getData('dlm_id_win'),
+                        'dlm_id_macos' => $ddpi->getData('dlm_id_macos'),
                         'acl' => $ddpi->getData('acl'),
                         'ttl' => $ddpi->getData('ttl'),
                         'secret' => $ddpi->getData('secret'),
@@ -104,14 +105,28 @@ class DDPFields extends AbstractModifier
                     ],
                 ],
             ],
-            'dlm_id' => [
+            'dlm_id_win' => [
                 'arguments' => [
                     'data' => [
                         'config' => [
-                            'label' => __('Solid DLM ID'),
+                            'label' => __('Solid Windows DLM ID'),
                             'componentType' => Field::NAME,
                             'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
-                            'dataScope' => 'dlm_id',
+                            'dataScope' => 'dlm_id_win',
+                            'dataType' => Text::NAME,
+                            'sortOrder' => 20
+                        ],
+                    ],
+                ],
+            ],
+            'dlm_id_macos' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'label' => __('Solid MacOS DLM ID'),
+                            'componentType' => Field::NAME,
+                            'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
+                            'dataScope' => 'dlm_id_macos',
                             'dataType' => Text::NAME,
                             'sortOrder' => 20
                         ],
