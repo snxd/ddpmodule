@@ -167,12 +167,12 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
      */
     public function getMacOSDownloadUrl($item)
     {
-        return getDownloadUrl($item, 'macos');
+        return $this->getDownloadUrl($item, 'macos');
     }
 
     public function getWinDownloadUrl($item)
     {
-        return getDownloadUrl($item, 'win');
+        return $this->getDownloadUrl($item, 'win');
     }
 
     public function getDownloadUrl($item, $os)
