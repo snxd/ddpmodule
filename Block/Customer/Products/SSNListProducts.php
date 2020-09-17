@@ -165,51 +165,55 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
      * @param Item $item
      * @return string
      */
-    public function getDownloadUrl($item)
+    public function getMacOSDownloadUrl($item)
     {
+        return getDownloadUrl($item, 'macos');
+    }
 
-        error_log("mes 1");
+    public function getWinDownloadUrl($item)
+    {
+        return getDownloadUrl($item, 'win');
+    }
+
+    public function getDownloadUrl($item, $os)
+    {
         $productId = $item->getProductId();
         $ddpi = $this->_ditemFactory->create();
         $ddpi->load($productId, "product_id");
 
-        error_log("mes 2");
-        if($ddpi->getData("ddp_id") == null || $ddpi->getData("enabled") != true) {
-            //$u = ListProducts->getDownloadUrl($item);
-            return "unknown";
+
+        if($ddpi->getData("ddp_id") != null && $ddpi->getData("enabled") == true) {
+            $product = $this->_productRepository->getById($item->getProductId());
+            $links = $this->_linkRepository->getList($product->getSku());
+
+            $dlmid = $ddpi->getData("dlm_id");
+            $cdnpass = $ddpi->getData("secret");
+            $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
+            $edgeAuth->setAcl($ddpi->getData("acl"));
+            $edgeAuth->setWindow($ddpi->getData("ttl"));
+            $authUrl = $edgeAuth->generateToken();
+
+            $dlmitems = "";
+
+            foreach($links as &$value) {
+                $dlmitems = $dlmitems . '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '?__token__=' . $authUrl . '"},';
+            }
+
+            $transid = $item->getPurchased()->getOrderId();
+
+            $workflow = '{"analytics":{"transactionId":"' . $transid . '","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
+
+            $wf = urlencode(base64_encode($workflow));
+
+            $dlmfile = "downloader.exe";
+            if($os == 'macos') {
+                $dlmfile = "downloader.dmg";
+            }
+
+            return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/" . $dlmfile;
         }
 
-        $product = $this->_productRepository->getById($item->getProductId());
-        $links = $this->_linkRepository->getList($product->getSku());
-
-        error_log("mes 3");
-        $dlmid = $ddpi->getData("dlm_id");
-        error_log("mes 31");
-        $cdnpass = $ddpi->getData("secret");
-        error_log("mes 32");
-        $edgeAuth = new TokenAuth($cdnpass, TokenAuth::ALGORITHM_SHA256);
-        error_log("mes 33");
-        $edgeAuth->setAcl($ddpi->getData("acl"));
-        error_log("mes 34");
-        $edgeAuth->setWindow($ddpi->getData("ttl"));
-        error_log("mes 35");
-        $authUrl = $edgeAuth->generateToken();
-
-        $dlmitems = "";
-
-        error_log("mes 4");
-        foreach($links as &$value) {
-            $dlmitems = $dlmitems . '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '?__token__=' . $authUrl . '"},';
-        }
-
-        $transid = $item->getPurchased()->getOrderId();
-
-        $workflow = '{"analytics":{"transactionId":"' . $transid . '","downloadName":"Magento"},"items":[' . substr($dlmitems, 0, -1) . ']}';
-
-
-        error_log("mes 5");
-        $wf = urlencode(base64_encode($workflow));
-        return "https://stampqa.directdlm.com/stamp/" . $dlmid . "/" . $wf . "/downloader.dmg";
+        return $this->getUrl('downloadable/download/link', ['id' => $item->getLinkHash(), '_secure' => true]);
     }
 
     /**
