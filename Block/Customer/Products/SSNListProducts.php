@@ -175,7 +175,22 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
         return $this->getDownloadUrl($item, 'win');
     }
 
-    public function getDownloadUrl($item, $os)
+    public function isDDPEnabled($item) {
+        $productId = $item->getProductId();
+        $ddpi = $this->_ditemFactory->create();
+        $ddpi->load($productId, "product_id");
+
+
+        if($ddpi->getData("ddp_id") != null && $ddpi->getData("enabled") == true) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+    public function getDownloadUrl($item, $os = 'win')
     {
         $productId = $item->getProductId();
         $ddpi = $this->_ditemFactory->create();
