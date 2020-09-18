@@ -1,5 +1,16 @@
 <?php
+/**
+ * Copyright © Solid State Networks, Inc. All rights reserved.
+ *
+ * @category Class
+ * @package  DDPModule
+ * @author   Jason Lines <jlines@solidstatenetworks.com>
+ * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
+ * @link     http://solidstatenetworks.com
+ */
+
 namespace SolidStateNetworks\ddpmodule\Ui\DataProvider\Product\Form\Modifier;
+
 use Magento\Downloadable\Model\Product\Type;
 use Magento\Catalog\Model\Locator\LocatorInterface;
 use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
@@ -9,26 +20,53 @@ use Magento\Ui\Component\Form\Element\Select;
 use Magento\Ui\Component\Form\Element\DataType\Text;
 use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
 
+/**
+ * DDPModule Admin UI field definitions
+ *
+ * @category Class
+ * @package  DDPFields
+ * @author   Jason Lines <jlines@solidstatenetworks.com>
+ * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
+ * @link     http://solidstatenetworks.com
+ * @api
+ * @method   array modifyData(array $data)
+ * @method   Link setProductId(int $value)
+ * @since    0.0.2
+ */
 class DDPFields extends AbstractModifier
 {
-    private $locator;
+    private $_locator;
+
+    /**
+     * Class Constructor
+     *
+     * @param Magento\Catalog\Model\Locator\LocatorInterface    $locator      The locator
+     * @param SolidStateNetworks\ddpmodule\Model\DDPItemFactory $ditemFactory DDPItem loader
+     */
     public function __construct(
         LocatorInterface $locator,
         DDPItemFactory $ditemFactory
     ) {
-        $this->locator = $locator;
+        $this->_locator = $locator;
         $this->_ditemFactory = $ditemFactory;
     }
 
+    /**
+     * Modify the magento data structure for DDPModule fields
+     *
+     * @param array $data incoming data
+     *
+     * @return array
+     */
     public function modifyData(array $data)
     {
         //THIS IS WHERE WE WILL LOAD DATA FROM THE DATABASE AND PLACE IT ON THE FORM
 
-        if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
+        if ($this->_locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
             return $data;
         }
 
-        $product   = $this->locator->getProduct();
+        $product   = $this->_locator->getProduct();
         $productId = $product->getId();
 
         $ddpi = $this->_ditemFactory->create();
@@ -53,12 +91,16 @@ class DDPFields extends AbstractModifier
         return $data;
     }
 
+    /**
+     * Modify the magento UI structure for DDPModule fields
+     *
+     * @param array $meta incoming metadata
+     *
+     * @return array
+     */
     public function modifyMeta(array $meta)
     {
-        //$ptype = $this->locator->getProduct()->getTypeId();
-        //$virtual = $this->locator->getProduct()->isVirtual();
-
-        if($this->locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
+        if ($this->_locator->getProduct()->getTypeId() !== Type::TYPE_DOWNLOADABLE) {
             return $meta;
         }
 
@@ -77,14 +119,19 @@ class DDPFields extends AbstractModifier
                             ],
                         ],
                     ],
-                    'children' => $this->getCustomFields()
+                    'children' => $this->_getCustomFields()
                 ]
             ]
         );
         return $meta;
     }
 
-    public function getCustomFields()
+    /**
+     * Custom metadata for DDPModule fields
+     *
+     * @return array
+     */
+    private function _getCustomFields()
     {
         return [
             'enabled' => [

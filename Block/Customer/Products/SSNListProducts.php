@@ -1,50 +1,53 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Solid State Networks, Inc. All rights reserved.
+ *
+ * @category Class
+ * @package  DDPModule
+ * @author   Jason Lines <jlines@solidstatenetworks.com>
+ * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
+ * @link     http://solidstatenetworks.com
  */
 
 namespace SolidStateNetworks\ddpmodule\Block\Customer\Products;
-
-//require_once("app/code/SolidStateNetworks/ddpmodule/Helper/Akamai/TokenAuth.php"); 
-//require_once("../../../Helper/Akamai/InvalidArgumentException.php"); 
 
 use Magento\Downloadable\Model\Link\Purchased\Item;
 use Matricali\Security\EdgeAuth\TokenAuth;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Downloadable\Model\LinkRepository;
-//use Magento\Downloadable\Block\Customer\Products\ListProducts;
 use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
 
 /**
- * Block to display downloadable links bought by customer
+ * DDPModule Admin UI field definitions
  *
+ * @category Class
+ * @package  DDPFields
+ * @author   Jason Lines <jlines@solidstatenetworks.com>
+ * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
+ * @link     http://solidstatenetworks.com
  * @api
- * @since 100.0.2
+ * @method   array modifyData(array $data)
+ * @method   Link setProductId(int $value)
+ * @since    0.0.2
  */
 class SSNListProducts extends \Magento\Framework\View\Element\Template
 {
-    /**
-     * @var \Magento\Customer\Helper\Session\CurrentCustomer
-     */
-    protected $currentCustomer;
+
+    private $_currentCustomer;
+    private $_linksFactory;
+    private $_itemsFactory;
 
     /**
-     * @var \Magento\Downloadable\Model\ResourceModel\Link\Purchased\CollectionFactory
-     */
-    protected $_linksFactory;
-
-    /**
-     * @var \Magento\Downloadable\Model\ResourceModel\Link\Purchased\Item\CollectionFactory
-     */
-    protected $_itemsFactory;
-
-    /**
-     * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer
-     * @param \Magento\Downloadable\Model\ResourceModel\Link\Purchased\CollectionFactory $linksFactory
-     * @param \Magento\Downloadable\Model\ResourceModel\Link\Purchased\Item\CollectionFactory $itemsFactory
-     * @param array $data
+     * Class contstructor
+     *
+     * @param Context           $context           Context
+     * @param CurrentCustomer   $currentCustomer   Current Customer
+     * @param ProductRepository $productRepository Product repo
+     * @param LinkRepository    $linkRepository    Link repo
+     * @param DDPItemFactory    $ditemFactory      Factory for DDPItem objects
+     * @param CollectionFactory $linksFactory      Factory for link objects
+     * @param CollectionFactory $itemsFactory      Factory for item objects
+     * @param array             $data              context data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -56,7 +59,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
         \Magento\Downloadable\Model\ResourceModel\Link\Purchased\Item\CollectionFactory $itemsFactory,
         array $data = []
     ) {
-        $this->currentCustomer = $currentCustomer;
+        $this->_currentCustomer = $currentCustomer;
         $this->_linksFactory = $linksFactory;
         $this->_itemsFactory = $itemsFactory;
         $this->_ditemFactory = $ditemFactory;
@@ -74,7 +77,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
     {
         parent::_construct();
         $purchased = $this->_linksFactory->create()
-            ->addFieldToFilter('customer_id', $this->currentCustomer->getCustomerId())
+            ->addFieldToFilter('customer_id', $this->_currentCustomer->getCustomerId())
             ->addOrder('created_at', 'desc');
         $this->setPurchased($purchased);
         $purchasedIds = [];
@@ -123,10 +126,11 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
     /**
      * Return order view url
      *
-     * @param integer $orderId
+     * @param int $orderId Order Id
+     *
      * @return string
      */
-    public function getOrderViewUrl($orderId)
+    public function getOrderViewUrl(int $orderId)
     {
         return $this->getUrl('sales/order/view', ['order_id' => $orderId]);
     }
@@ -147,7 +151,8 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
     /**
      * Return number of left downloads or unlimited
      *
-     * @param Item $item
+     * @param Item $item Current Item
+     *
      * @return \Magento\Framework\Phrase|int
      */
     public function getRemainingDownloads($item)
@@ -160,9 +165,10 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
     }
 
     /**
-     * Return url to download link
+     * Return url to download link for MacOS
      *
-     * @param Item $item
+     * @param Item $item Current Item
+     *
      * @return string
      */
     public function getMacOSDownloadUrl($item)
@@ -170,26 +176,47 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
         return $this->getDownloadUrl($item, 'macos');
     }
 
+    /**
+     * Return url to download link for Windows
+     *
+     * @param Item $item Current Item
+     *
+     * @return string
+     */
     public function getWinDownloadUrl($item)
     {
         return $this->getDownloadUrl($item, 'win');
     }
 
-    public function isDDPEnabled($item) {
+    /**
+     * Helper function to determine if DDP is enabled for the given product
+     *
+     * @param Item $item Current Item
+     *
+     * @return bool
+     */
+    public function isDDPEnabled($item)
+    {
         $productId = $item->getProductId();
         $ddpi = $this->_ditemFactory->create();
         $ddpi->load($productId, "product_id");
 
 
-        if($ddpi->getData("ddp_id") != null && $ddpi->getData("enabled") == true) {
+        if ($ddpi->getData("ddp_id") != null && $ddpi->getData("enabled") == true) {
             return true;
         }
 
         return false;
     }
 
-
-
+    /**
+     * Return url to download link
+     *
+     * @param Item   $item Current Item
+     * @param string $os   OS specific links
+     *
+     * @return string
+     */
     public function getDownloadUrl($item, $os = 'win')
     {
         $productId = $item->getProductId();
@@ -197,7 +224,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
         $ddpi->load($productId, "product_id");
 
 
-        if($ddpi->getData("ddp_id") != null && $ddpi->getData("enabled") == true) {
+        if ($ddpi->getData("ddp_id") != null && $ddpi->getData("enabled") == true) {
             $product = $this->_productRepository->getById($item->getProductId());
             $links = $this->_linkRepository->getList($product->getSku());
 
@@ -210,7 +237,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
 
             $dlmitems = "";
 
-            foreach($links as &$value) {
+            foreach ($links as &$value) {
                 $dlmitems = $dlmitems . '{"name":"' . $value->getTitle() . '", "url":"' . $value->getLinkUrl() . '?__token__=' . $authUrl . '"},';
             }
 
@@ -221,7 +248,7 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
             $wf = urlencode(base64_encode($workflow));
 
             $dlmfile = "downloader.exe";
-            if($os == 'macos') {
+            if ($os == 'macos') {
                 $dlmfile = "downloader.dmg";
                 $dlmid = $ddpi->getData("dlm_id_macos");
             }
@@ -236,7 +263,6 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
      * Return true if target of link new window
      *
      * @return bool
-     * @SuppressWarnings(PHPMD.BooleanGetMethodName)
      */
     public function getIsOpenInNewWindow()
     {
