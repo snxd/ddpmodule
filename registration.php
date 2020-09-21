@@ -5,7 +5,7 @@
  * @category Class
  * @package  DDPModule
  * @author   Jason Lines <jlines@solidstatenetworks.com>
- * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
+ * @license  MIT https://mit-license.org/
  * @link     http://solidstatenetworks.com
  */
     \Magento\Framework\Component\ComponentRegistrar::register(

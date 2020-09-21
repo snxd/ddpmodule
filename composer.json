@@ -3,7 +3,7 @@
     "type": "magento2-module",
     "version": "0.0.2",
     "license": [
-	    "OSL-3.0"
+	    "MIT"
 	],
     "description": "This library provides necessary logic to integrate SSN DDP with magento.",
     "repositories": [
