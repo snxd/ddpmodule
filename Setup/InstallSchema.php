@@ -14,8 +14,6 @@ namespace SolidStateNetworks\ddpmodule\Setup;
 /**
  * DDPModule Database setup script
  *
- * @category Class
- * @package  InstallSchema
  * @author   Jason Lines <jlines@solidstatenetworks.com>
  * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
  * @link     http://solidstatenetworks.com

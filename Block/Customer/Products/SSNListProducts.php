@@ -20,8 +20,6 @@ use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
 /**
  * DDPModule Admin UI field definitions
  *
- * @category Class
- * @package  DDPFields
  * @author   Jason Lines <jlines@solidstatenetworks.com>
  * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
  * @link     http://solidstatenetworks.com
@@ -201,7 +199,6 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
         $ddpi = $this->_ditemFactory->create();
         $ddpi->load($productId, "product_id");
 
-
         if ($ddpi->getData("ddp_id") != null && $ddpi->getData("enabled") == true) {
             return true;
         }
@@ -222,7 +219,6 @@ class SSNListProducts extends \Magento\Framework\View\Element\Template
         $productId = $item->getProductId();
         $ddpi = $this->_ditemFactory->create();
         $ddpi->load($productId, "product_id");
-
 
         if ($ddpi->getData("ddp_id") != null && $ddpi->getData("enabled") == true) {
             $product = $this->_productRepository->getById($item->getProductId());

@@ -23,8 +23,6 @@ use SolidStateNetworks\ddpmodule\Model\DDPItemFactory;
 /**
  * DDPModule Admin UI field definitions
  *
- * @category Class
- * @package  DDPFields
  * @author   Jason Lines <jlines@solidstatenetworks.com>
  * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
  * @link     http://solidstatenetworks.com

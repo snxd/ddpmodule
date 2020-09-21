@@ -16,8 +16,6 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 /**
  * DDPItem Resource Model
  *
- * @category Class
- * @package  DDPItem
  * @author   Jason Lines <jlines@solidstatenetworks.com>
  * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
  * @link     http://solidstatenetworks.com

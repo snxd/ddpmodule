@@ -16,8 +16,6 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 /**
  * DDPModule Collection for dealing with groups of DDPItem objects
  *
- * @category Class
- * @package  Collection
  * @author   Jason Lines <jlines@solidstatenetworks.com>
  * @license  OSL-3.0 http://opensource.org/licenses/OSL-3.0
  * @link     http://solidstatenetworks.com

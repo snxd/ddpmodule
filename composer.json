@@ -2,8 +2,12 @@
     "name": "solid-state-networks/ddpmodule",
     "type": "magento2-module",
     "version": "0.0.2",
+    "license": [
+	    "OSL-3.0"
+	],
     "description": "This library provides necessary logic to integrate SSN DDP with magento.",
     "autoload": {
-        "psr-4": {"Matricali\\Security\\EdgeAuth\\": "vendor/php-edge-auth/src/EdgeAuth"}
+        "psr-4": {"SolidStateNetworks\\ddpmodule": ""},
+        "files": [ "registration.php" ]
     }
 }
