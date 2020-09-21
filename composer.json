@@ -6,6 +6,15 @@
 	    "OSL-3.0"
 	],
     "description": "This library provides necessary logic to integrate SSN DDP with magento.",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/snxd/ddpmodule"
+        }
+    ],
+    "require": {
+        "matricali/akamai-token-auth": "1.0.0"
+    },
     "autoload": {
         "psr-4": {"SolidStateNetworks\\ddpmodule": ""},
         "files": [ "registration.php" ]
