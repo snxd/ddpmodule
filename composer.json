@@ -1,7 +1,7 @@
 {
-    "name": "solid-state-networks/ddpmodule",
+    "name": "solid_state_networks/ddpmodule",
     "type": "magento2-module",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "license": [
 	    "MIT"
 	],
