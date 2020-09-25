@@ -37,9 +37,9 @@
                         <strong class="product-name"><?= $block->escapeHtml($_item->getPurchased()->getProductName()) ?></strong>
                         <?php if ($_item->getStatus() == \Magento\Downloadable\Model\Link\Purchased\Item::LINK_STATUS_AVAILABLE): ?>
                             <?php if ($block->isDDPEnabled($_item)): ?>
-                                Windows <a href="<?= $block->escapeUrl($block->getWinDownloadUrl($_item)) ?>" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?>><?= $block->escapeHtml($_item->getLinkTitle()) ?></a>
+                                Windows <form action="<?= $block->escapeUrl($block->getWinDownloadUrl($_item)) ?>"><input type=submit title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?> value="<?= $block->escapeHtml($_item->getLinkTitle()) ?>"></form>
 
-                                MacOS <a href="<?= $block->escapeUrl($block->getMacOSDownloadUrl($_item)) ?>" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?>><?= $block->escapeHtml($_item->getLinkTitle()) ?></a>
+                                MacOS <form action="<?= $block->escapeUrl($block->getMacOSDownloadUrl($_item)) ?>"><input type=submit title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?> value="<?= $block->escapeHtml($_item->getLinkTitle()) ?>"></form>
                             <?php else: ?>
                                 <a href="<?= $block->escapeUrl($block->getDownloadUrl($_item)) ?>" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?>><?= $block->escapeHtml($_item->getLinkTitle()) ?></a>
                             <?php endif; ?>
