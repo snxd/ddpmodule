@@ -37,7 +37,7 @@
                         <strong class="product-name"><?= $block->escapeHtml($_item->getPurchased()->getProductName()) ?></strong>
                         <?php if ($_item->getStatus() == \Magento\Downloadable\Model\Link\Purchased\Item::LINK_STATUS_AVAILABLE): ?>
                             <?php if ($block->isDDPEnabled($_item)): ?>
-                                Windows <form action="<?= $block->escapeUrl($block->getWinDownloadUrl($_item)) ?>"><input type=submit title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?> value="<?= $block->escapeHtml($_item->getLinkTitle()) ?>"></form>
+                                Windows <form id="ssn_win_form" action="<?= $block->escapeUrl($block->getWinDownloadUrl($_item)) ?>"><a href="javascript:{}" onclick="document.getElementById('ssn_win_form').submit(); return false;" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?>><?= $block->escapeHtml($_item->getLinkTitle()) ?>"</a></form>
 
                                 MacOS <form action="<?= $block->escapeUrl($block->getMacOSDownloadUrl($_item)) ?>"><input type=submit title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?> value="<?= $block->escapeHtml($_item->getLinkTitle()) ?>"></form>
                             <?php else: ?>
