@@ -16,7 +16,7 @@
         "matricali/akamai-token-auth": "1.0.0"
     },
     "autoload": {
-        "psr-4": {"SolidStateNetworks\\ddpmodule": ""},
+        "psr-4": {"SolidStateNetworks\\ddpmodule\\": ""},
         "files": [ "registration.php" ]
     }
 }
