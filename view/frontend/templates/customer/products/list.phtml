@@ -37,9 +37,9 @@
                         <strong class="product-name"><?= $block->escapeHtml($_item->getPurchased()->getProductName()) ?></strong>
                         <?php if ($_item->getStatus() == \Magento\Downloadable\Model\Link\Purchased\Item::LINK_STATUS_AVAILABLE): ?>
                             <?php if ($block->isDDPEnabled($_item)): ?>
-                                Windows <form action="<?= $block->escapeUrl($block->getWinDownloadUrl($_item)) ?>"><a href="javascript:{}" onclick="this.closest('form').submit();return false;" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download"><?= $block->escapeHtml($_item->getLinkTitle()) ?></a></form>
+                                Windows <form action="<?= $block->escapeUrl($block->getWinDownloadUrl($_item)) ?>" style="display: inline;"><a href="javascript:{}" onclick="this.closest('form').submit();return false;" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download"><?= $block->escapeHtml($_item->getLinkTitle()) ?></a></form>
 
-                                MacOS <form action="<?= $block->escapeUrl($block->getMacOSDownloadUrl($_item)) ?>"><a href="javascript:{}" onclick="this.closest('form').submit();return false;" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download"><?= $block->escapeHtml($_item->getLinkTitle()) ?></a></form>
+                                MacOS <form action="<?= $block->escapeUrl($block->getMacOSDownloadUrl($_item)) ?>" style="display: inline;"><a href="javascript:{}" onclick="this.closest('form').submit();return false;" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download"><?= $block->escapeHtml($_item->getLinkTitle()) ?></a></form>
                             <?php else: ?>
                                 <a href="<?= $block->escapeUrl($block->getDownloadUrl($_item)) ?>" title="<?= $block->escapeHtmlAttr(__('Start Download')) ?>" class="action download" <?= /* @noEscape */ $block->getIsOpenInNewWindow() ? 'onclick="this.target=\'_blank\'"' : '' ?>><?= $block->escapeHtml($_item->getLinkTitle()) ?></a>
                             <?php endif; ?>
