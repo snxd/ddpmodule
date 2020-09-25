@@ -63,14 +63,14 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 ->addColumn(
                     'dlm_id_win',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    32,
+                    36,
                     [],
                     'ID for the Windows DLM at Solid State Networks'
                 )
                 ->addColumn(
                     'dlm_id_macos',
                     \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                    32,
+                    36,
                     [],
                     'ID for the MacOS DLM at Solid State Networks'
                 )
