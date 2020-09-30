@@ -55,7 +55,7 @@ class DDPSave implements ObserverInterface
         $params               = $this->_request->getParams();
 
         if (in_array('solidddp', $params) == false) {
-            error_log("DDP Fields not foudn in params");
+            error_log("DDP Fields not foudn in params " . $params['solidddp']['acl']);
             return;
         }
 
