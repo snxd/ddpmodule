@@ -54,10 +54,11 @@ class DDPSave implements ObserverInterface
         //THIS IS WHERE WE WILL SAVE DATA TO THE DATABASE AND RELATE IT TO THE PRODUCT
         $params               = $this->_request->getParams();
 
-        if (!in_array('solidddp', $params)) {
+        if (in_array('solidddp', $params) == false) {
+            error_log("DDP Fields not foudn in params");
             return;
         }
-        
+
         $customFieldData = $params['solidddp'];
 
         $product = $observer->getProduct();  // you will get product object
