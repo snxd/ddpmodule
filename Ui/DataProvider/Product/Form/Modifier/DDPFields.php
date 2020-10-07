@@ -109,7 +109,7 @@ class DDPFields extends AbstractModifier
                     'arguments' => [
                         'data' => [
                             'config' => [
-                                'label' => __('Solid State Networks DDP'),
+                                'label' => __('Solid State Networks DLM'),
                                 'componentType' => Fieldset::NAME,
                                 'dataScope' => 'data.solidddp',
                                 'collapsible' => true,
