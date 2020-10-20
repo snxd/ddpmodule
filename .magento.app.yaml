@@ -11,8 +11,8 @@ build:
     flavor: composer
 
 # Enable extensions required by Magento 2
-runtime:
-    extensions:
+#runtime:
+#    extensions:
 
 
 # The relationships of the application with services or other applications.
