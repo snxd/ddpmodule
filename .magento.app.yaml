@@ -24,7 +24,7 @@ relationships:
 
 
 # The configuration of app when it is exposed to the web.
-web:
+# web:
 
 
 # The size of the persistent disk of the application (in MB).
@@ -32,14 +32,18 @@ disk: 2048
 
 # The mounts that will be performed when the package is deployed.
 mounts:
-
+    "var": "shared:files/var"
 
 hooks:
 
 # Default Magento 2 cron jobs
 crons:
-
+    cronrun:
+        spec: "* * * * *"
+        cmd: "php bin/magento cron:run"
 
 # Environment variables
 variables:
     env:
+        CONFIG__DEFAULT__PAYPAL_ONBOARDING__MIDDLEMAN_DOMAIN: 'payment-broker.magento.com'
+        CONFIG__STORES__DEFAULT__PAYPAL__NOTATION_CODE: 'Magento_Enterprise_Cloud'
