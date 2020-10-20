@@ -34,7 +34,7 @@ disk: 2048
 mounts:
     "var": "shared:files/var"
 
-hooks:
+#hooks:
 
 # Default Magento 2 cron jobs
 crons:
