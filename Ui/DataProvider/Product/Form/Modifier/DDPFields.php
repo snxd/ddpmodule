@@ -182,7 +182,7 @@ class DDPFields extends AbstractModifier
                 'arguments' => [
                     'data' => [
                         'config' => [
-                            'label' => __('CDN ACL'),
+                            'label' => __('CDN Protected File Path (ex. myfiles/*)'),
                             'componentType' => Field::NAME,
                             'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
                             'dataScope' => 'acl',
@@ -196,7 +196,7 @@ class DDPFields extends AbstractModifier
                 'arguments' => [
                     'data' => [
                         'config' => [
-                            'label' => __('CDN Time to Live'),
+                            'label' => __('CDN Time to Live (seconds)'),
                             'componentType' => Field::NAME,
                             'formElement' => \Magento\Ui\Component\Form\Element\Input::NAME,
                             'dataScope' => 'ttl',
